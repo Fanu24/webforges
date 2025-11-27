@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Admin - WebForge Studio</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --dark-primary: #050714;
+      --dark-secondary: #070A1F;
+      --neon-cyan: #22D3EE;
+      --neon-purple: #A855F7;
+      --neon-pink: #EC4899;
+      --text-primary: #F9FAFB;
+      --text-secondary: #9CA3AF;
+      --success: #10B981;
+      --warning: #F59E0B;
+      --danger: #EF4444;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Login Screen */
+    .login-container {
+      width: 100%;
+      max-width: 400px;
+      padding: 2rem;
+    }
+
+    .login-box {
+      background: var(--dark-secondary);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      padding: 2.5rem;
+      backdrop-filter: blur(12px);
+    }
+
+    .login-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      text-align: center;
+      background: linear-gradient(to right, #22d3ee, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .login-subtitle {
+      color: var(--text-secondary);
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 0.875rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid rgba(51, 65, 85, 1);
+      border-radius: 0.5rem;
+      color: var(--text-primary);
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.1);
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 0.75rem 1.5rem;
+      background: linear-gradient(to right, #06b6d4, #9333ea);
+      border: none;
+      border-radius: 0.5rem;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-login:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(34, 211, 238, 0.3);
+    }
+
+    .error-message {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid var(--danger);
+      color: var(--danger);
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+      font-size: 0.875rem;
+      display: none;
+    }
+
+    .error-message.show {
+      display: block;
+    }
+
+    /* Dashboard Screen */
+    .dashboard-container {
+      display: none;
+      width: 100%;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    .dashboard-container.active {
+      display: block;
+    }
+
+    .dashboard-header {
+      max-width: 1400px;
+      margin: 0 auto 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .dashboard-title {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(to right, #22d3ee, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .btn-logout {
+      padding: 0.5rem 1.5rem;
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid var(--danger);
+      border-radius: 0.5rem;
+      color: var(--danger);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-logout:hover {
+      background: var(--danger);
+      color: white;
+    }
+
+    .stats-grid {
+      max-width: 1400px;
+      margin: 0 auto 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .stat-card {
+      background: var(--dark-secondary);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      backdrop-filter: blur(12px);
+    }
+
+    .stat-label {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .stat-change {
+      font-size: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    .stat-change.positive {
+      color: var(--success);
+    }
+
+    .stat-change.negative {
+      color: var(--danger);
+    }
+
+    .dashboard-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    @media (min-width: 1024px) {
+      .dashboard-content {
+        grid-template-columns: 2fr 1fr;
+      }
+    }
+
+    .dashboard-section {
+      background: var(--dark-secondary);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      backdrop-filter: blur(12px);
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: var(--text-primary);
+    }
+
+    .filters {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+
+    .filter-select {
+      padding: 0.5rem 1rem;
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid rgba(51, 65, 85, 1);
+      border-radius: 0.5rem;
+      color: var(--text-primary);
+      font-size: 0.875rem;
+      cursor: pointer;
+    }
+
+    .articles-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .articles-table th {
+      text-align: left;
+      padding: 0.75rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .articles-table td {
+      padding: 1rem 0.75rem;
+      font-size: 0.875rem;
+      color: var(--text-primary);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .articles-table tr:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .badge-success {
+      background: rgba(16, 185, 129, 0.2);
+      color: var(--success);
+    }
+
+    .badge-warning {
+      background: rgba(245, 158, 11, 0.2);
+      color: var(--warning);
+    }
+
+    .badge-danger {
+      background: rgba(239, 68, 68, 0.2);
+      color: var(--danger);
+    }
+
+    .chart-container {
+      height: 300px;
+      margin-top: 1rem;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-secondary);
+    }
+  </style>
+</head>
+<body>
+  <!-- Login Screen -->
+  <div class="login-container" id="loginContainer">
+    <div class="login-box">
+      <h1 class="login-title">Dashboard Admin</h1>
+      <p class="login-subtitle">WebForge Studio - Accesso Riservato</p>
+      
+      <div class="error-message" id="errorMessage">
+        Password non corretta. Riprova.
+      </div>
+      
+      <form id="loginForm">
+        <div class="form-group">
+          <label class="form-label" for="password">Password</label>
+          <input 
+            type="password" 
+            id="password" 
+            class="form-input" 
+            placeholder="Inserisci la password"
+            required
+            autofocus
+          >
+        </div>
+        <button type="submit" class="btn-login">Accedi</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Dashboard Screen -->
+  <div class="dashboard-container" id="dashboardContainer">
+    <div class="dashboard-header">
+      <h1 class="dashboard-title">📊 Dashboard Analytics</h1>
+      <button class="btn-logout" id="logoutBtn">Esci</button>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Articoli Totali</div>
+        <div class="stat-value" id="totalArticles">0</div>
+        <div class="stat-change positive">+12 questo mese</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Visite Totali</div>
+        <div class="stat-value" id="totalViews">0</div>
+        <div class="stat-change positive">+15% vs mese scorso</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Conversioni</div>
+        <div class="stat-value" id="totalConversions">0</div>
+        <div class="stat-change positive">+8% vs mese scorso</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Tasso Conversione</div>
+        <div class="stat-value" id="conversionRate">0%</div>
+        <div class="stat-change positive">+2.3% vs mese scorso</div>
+      </div>
+    </div>
+
+    <!-- Dashboard Content -->
+    <div class="dashboard-content">
+      <!-- Articles Performance -->
+      <div class="dashboard-section">
+        <h2 class="section-title">Performance Articoli</h2>
+        
+        <div class="filters">
+          <select class="filter-select" id="filterCity">
+            <option value="">Tutte le città</option>
+            <option value="Roma">Roma</option>
+            <option value="Milano">Milano</option>
+          </select>
+          <select class="filter-select" id="filterCategory">
+            <option value="">Tutte le categorie</option>
+          </select>
+          <select class="filter-select" id="filterPeriod">
+            <option value="7">Ultimi 7 giorni</option>
+            <option value="30" selected>Ultimi 30 giorni</option>
+            <option value="90">Ultimi 90 giorni</option>
+          </select>
+        </div>
+
+        <div style="overflow-x: auto;">
+          <table class="articles-table">
+            <thead>
+              <tr>
+                <th>Articolo</th>
+                <th>Categoria</th>
+                <th>Località</th>
+                <th>Visite</th>
+                <th>Conversioni</th>
+                <th>Tasso</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="articlesTableBody">
+              <tr>
+                <td colspan="7" class="loading">Caricamento dati...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Charts & Insights -->
+      <div>
+        <div class="dashboard-section">
+          <h2 class="section-title">Trend Visite</h2>
+          <div class="chart-container" id="visitsChart">
+            <div class="loading">Grafico in caricamento...</div>
+          </div>
+        </div>
+
+        <div class="dashboard-section" style="margin-top: 1.5rem;">
+          <h2 class="section-title">Top Keywords</h2>
+          <div id="topKeywords">
+            <div class="loading">Caricamento keywords...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Password (in produzione usare backend sicuro)
+    const ADMIN_PASSWORD = 'webforge2024'; // Cambia questa password!
+    const SESSION_KEY = 'admin_authenticated';
+
+    // Check if already logged in
+    if (sessionStorage.getItem(SESSION_KEY) === 'true') {
+      showDashboard();
+    }
+
+    // Login Form
+    document.getElementById('loginForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const password = document.getElementById('password').value;
+      const errorMsg = document.getElementById('errorMessage');
+      
+      if (password === ADMIN_PASSWORD) {
+        sessionStorage.setItem(SESSION_KEY, 'true');
+        showDashboard();
+      } else {
+        errorMsg.classList.add('show');
+        setTimeout(() => {
+          errorMsg.classList.remove('show');
+        }, 3000);
+      }
+    });
+
+    // Logout
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      sessionStorage.removeItem(SESSION_KEY);
+      showLogin();
+    });
+
+    function showLogin() {
+      document.getElementById('loginContainer').style.display = 'flex';
+      document.getElementById('dashboardContainer').classList.remove('active');
+    }
+
+    function showDashboard() {
+      document.getElementById('loginContainer').style.display = 'none';
+      document.getElementById('dashboardContainer').classList.add('active');
+      loadDashboardData();
+    }
+
+    // Load Dashboard Data
+    function loadDashboardData() {
+      // Simulated data (in produzione caricare da API/Google Analytics)
+      const mockData = {
+        totalArticles: 247,
+        totalViews: 12450,
+        totalConversions: 342,
+        conversionRate: 2.75,
+        articles: [
+          {
+            title: 'Sito Web per Ristorante a Trastevere, Roma',
+            category: 'Ristoranti',
+            location: 'Trastevere, Roma',
+            views: 1245,
+            conversions: 34,
+            rate: 2.73,
+            status: 'success'
+          },
+          {
+            title: 'Sito Web per Hotel a Navigli, Milano',
+            category: 'Hotel',
+            location: 'Navigli, Milano',
+            views: 892,
+            conversions: 28,
+            rate: 3.14,
+            status: 'success'
+          },
+          {
+            title: 'Sito Web per Studio Legale a Prati, Roma',
+            category: 'Studi Legali',
+            location: 'Prati, Roma',
+            views: 567,
+            conversions: 12,
+            rate: 2.12,
+            status: 'warning'
+          }
+        ],
+        keywords: [
+          { keyword: 'sito web ristorante Trastevere', impressions: 3420, clicks: 145 },
+          { keyword: 'sito web hotel Milano', impressions: 2890, clicks: 128 },
+          { keyword: 'sito web studio legale Roma', impressions: 2156, clicks: 89 }
+        ]
+      };
+
+      // Update stats
+      document.getElementById('totalArticles').textContent = mockData.totalArticles;
+      document.getElementById('totalViews').textContent = mockData.totalViews.toLocaleString();
+      document.getElementById('totalConversions').textContent = mockData.totalConversions;
+      document.getElementById('conversionRate').textContent = mockData.conversionRate + '%';
+
+      // Update articles table
+      const tbody = document.getElementById('articlesTableBody');
+      tbody.innerHTML = mockData.articles.map(article => `
+        <tr>
+          <td>${article.title}</td>
+          <td>${article.category}</td>
+          <td>${article.location}</td>
+          <td>${article.views.toLocaleString()}</td>
+          <td>${article.conversions}</td>
+          <td>${article.rate}%</td>
+          <td>
+            <span class="badge badge-${article.status}">
+              ${article.status === 'success' ? 'Ottimo' : article.status === 'warning' ? 'Buono' : 'Da migliorare'}
+            </span>
+          </td>
+        </tr>
+      `).join('');
+
+      // Update keywords
+      const keywordsDiv = document.getElementById('topKeywords');
+      keywordsDiv.innerHTML = mockData.keywords.map((kw, index) => `
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+          <div>
+            <div style="font-weight: 600; color: var(--text-primary);">${index + 1}. ${kw.keyword}</div>
+            <div style="font-size: 0.75rem; color: var(--text-secondary);">${kw.impressions.toLocaleString()} impressioni</div>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-weight: 600; color: var(--neon-cyan);">${kw.clicks} click</div>
+            <div style="font-size: 0.75rem; color: var(--text-secondary);">${(kw.clicks/kw.impressions*100).toFixed(2)}% CTR</div>
+          </div>
+        </div>
+      `).join('');
+
+      // Simple chart (in produzione usare Chart.js)
+      const chartDiv = document.getElementById('visitsChart');
+      chartDiv.innerHTML = `
+        <div style="height: 100%; display: flex; align-items: flex-end; gap: 0.5rem; padding: 1rem;">
+          ${[65, 72, 58, 81, 75, 88, 92, 85, 78, 95, 102, 98].map((height, i) => `
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+              <div style="background: linear-gradient(to top, #06b6d4, #9333ea); width: 100%; height: ${height}%; border-radius: 0.25rem 0.25rem 0 0;"></div>
+              <div style="font-size: 0.75rem; color: var(--text-secondary);">${i + 1}</div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    // Filter handlers
+    document.getElementById('filterCity').addEventListener('change', loadDashboardData);
+    document.getElementById('filterCategory').addEventListener('change', loadDashboardData);
+    document.getElementById('filterPeriod').addEventListener('change', loadDashboardData);
+  </script>
+</body>
+</html>
+

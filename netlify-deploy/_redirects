@@ -1,5 +1,0 @@
-# Redirects file for Netlify
-# This ensures all routes work with the HTML static version
-
-/*    /index.html   200
-
