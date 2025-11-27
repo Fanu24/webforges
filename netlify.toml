@@ -1,13 +1,14 @@
-# Netlify Configuration for Next.js
+# Netlify Configuration for Static HTML
 
 [build]
-  command = "npm run build"
-  publish = ".next"
+  publish = "."
 
 [build.environment]
   NODE_VERSION = "18"
 
 # Redirect rules for SPA (Single Page Application)
+# Static HTML files (like /blog/*.html) are served directly by Netlify
+# Only redirect non-file routes to index.html
 [[redirects]]
   from = "/*"
   to = "/index.html"

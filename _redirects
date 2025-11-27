@@ -1,5 +1,11 @@
 # Redirects file for Netlify
-# This ensures all routes work with the HTML static version
+# Static HTML files (like /blog/*.html) are served directly by Netlify
+# Only redirect specific SPA routes to index.html
 
-/*    /index.html   200
-
+# SPA routes - redirect to index.html
+/servizi       /index.html   200
+/perche-noi    /index.html   200
+/portfolio     /index.html   200
+/roma-milano   /index.html   200
+/prezzi        /index.html   200
+/contatti      /index.html   200
