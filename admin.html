@@ -455,10 +455,31 @@
       <div>
         <div class="dashboard-section">
           <h2 class="section-title">📁 Pagine per Categoria</h2>
+          <div style="margin-bottom: 1rem;">
+            <input 
+              type="text" 
+              id="searchCategory" 
+              class="form-input" 
+              placeholder="Cerca categoria..." 
+              style="margin-bottom: 0;"
+            >
+          </div>
           <div style="max-height: 400px; overflow-y: auto;">
             <div id="categoriesList">
               <div class="loading">Caricamento categorie...</div>
             </div>
+          </div>
+        </div>
+        
+        <div class="dashboard-section" style="margin-top: 1.5rem;">
+          <h2 class="section-title">📄 Elenco Blog per Categoria</h2>
+          <div style="margin-bottom: 1rem;">
+            <select class="filter-select" id="selectCategoryView" style="width: 100%;">
+              <option value="">Seleziona una categoria per vedere i blog</option>
+            </select>
+          </div>
+          <div style="max-height: 500px; overflow-y: auto;" id="blogListContainer">
+            <div class="loading">Seleziona una categoria per vedere l'elenco dei blog</div>
           </div>
         </div>
 
@@ -635,6 +656,24 @@
         option.textContent = cat.name;
         categoryFilter.appendChild(option);
       });
+      
+      // Popola select per visualizzazione blog
+      const selectCategoryView = document.getElementById('selectCategoryView');
+      categories.forEach(cat => {
+        const option = document.createElement('option');
+        option.value = cat.slug;
+        option.textContent = `${cat.icon} ${cat.name}`;
+        selectCategoryView.appendChild(option);
+      });
+      
+      // Handler per select categoria
+      selectCategoryView.addEventListener('change', (e) => {
+        if (e.target.value) {
+          displayBlogsForCategory(e.target.value, realStats.articlesByCategory);
+        } else {
+          document.getElementById('blogListContainer').innerHTML = '<div class="loading">Seleziona una categoria per vedere l\'elenco dei blog</div>';
+        }
+      });
 
       // Mostra pagine per categoria
       displayCategories(realStats.articlesByCategory, realStats.totalArticles);
@@ -707,10 +746,10 @@
     function displayCategories(categoriesData, totalArticles) {
       const categoriesDiv = document.getElementById('categoriesList');
       
-      categoriesDiv.innerHTML = categoriesData.map(cat => {
+      const categoriesHTML = categoriesData.map(cat => {
         const percentage = ((cat.count / totalArticles) * 100).toFixed(1);
         return `
-          <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; margin-bottom: 0.5rem; background: rgba(255,255,255,0.02); border-radius: 0.5rem; border: 1px solid rgba(255,255,255,0.05);">
+          <div class="category-item" data-category="${cat.slug}" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; margin-bottom: 0.5rem; background: rgba(255,255,255,0.02); border-radius: 0.5rem; border: 1px solid rgba(255,255,255,0.05); cursor: pointer; transition: all 0.3s ease;">
             <div style="display: flex; align-items: center; gap: 1rem; flex: 1;">
               <span style="font-size: 1.5rem;">${cat.icon}</span>
               <div>
@@ -725,6 +764,109 @@
           </div>
         `;
       }).join('');
+      
+      categoriesDiv.innerHTML = categoriesHTML;
+      
+      // Aggiungi click handler per ogni categoria
+      document.querySelectorAll('.category-item').forEach(item => {
+        item.addEventListener('click', () => {
+          const categorySlug = item.dataset.category;
+          document.getElementById('selectCategoryView').value = categorySlug;
+          displayBlogsForCategory(categorySlug, categoriesData);
+        });
+        item.addEventListener('mouseenter', () => {
+          item.style.background = 'rgba(255,255,255,0.05)';
+          item.style.borderColor = 'rgba(34, 211, 238, 0.3)';
+        });
+        item.addEventListener('mouseleave', () => {
+          item.style.background = 'rgba(255,255,255,0.02)';
+          item.style.borderColor = 'rgba(255,255,255,0.05)';
+        });
+      });
+      
+      // Search functionality
+      const searchInput = document.getElementById('searchCategory');
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          const searchTerm = e.target.value.toLowerCase();
+          document.querySelectorAll('.category-item').forEach(item => {
+            const categoryName = item.textContent.toLowerCase();
+            item.style.display = categoryName.includes(searchTerm) ? 'flex' : 'none';
+          });
+        });
+      }
+    }
+    
+    // Mostra blog per categoria selezionata
+    function displayBlogsForCategory(categorySlug, categoriesData) {
+      const category = categoriesData.find(c => c.slug === categorySlug);
+      if (!category) return;
+      
+      const container = document.getElementById('blogListContainer');
+      const locationNames = {
+        'appio-roma': 'Appio, Roma',
+        'brera-milano': 'Brera, Milano',
+        'campo-de-fiori-roma': 'Campo de\' Fiori, Roma',
+        'castel-gandolfo-roma': 'Castel Gandolfo, Roma',
+        'centro-milano': 'Centro, Milano',
+        'centro-storico-roma': 'Centro Storico, Roma',
+        'cinisello-balsamo-milano': 'Cinisello Balsamo, Milano',
+        'corso-como-milano': 'Corso Como, Milano',
+        'duomo-milano': 'Duomo, Milano',
+        'eur-roma': 'EUR, Roma',
+        'fiumicino-roma': 'Fiumicino, Roma',
+        'flaminio-roma': 'Flaminio, Roma',
+        'frascati-roma': 'Frascati, Roma',
+        'garibaldi-milano': 'Garibaldi, Milano',
+        'isola-milano': 'Isola, Milano',
+        'monti-roma': 'Monti, Roma',
+        'navigli-milano': 'Navigli, Milano',
+        'naviglio-grande-milano': 'Naviglio Grande, Milano',
+        'nomentana-roma': 'Nomentana, Roma',
+        'ostia-roma': 'Ostia, Roma',
+        'parioli-roma': 'Parioli, Roma',
+        'porta-nuova-milano': 'Porta Nuova, Milano',
+        'porta-romana-milano': 'Porta Romana, Milano',
+        'porta-venezia-milano': 'Porta Venezia, Milano',
+        'prati-roma': 'Prati, Roma',
+        'rho-milano': 'Rho, Milano',
+        'san-giovanni-roma': 'San Giovanni, Roma',
+        'seregno-milano': 'Seregno, Milano',
+        'sesto-san-giovanni-milano': 'Sesto San Giovanni, Milano',
+        'testaccio-roma': 'Testaccio, Roma',
+        'tivoli-roma': 'Tivoli, Roma',
+        'trastevere-roma': 'Trastevere, Roma',
+        'tuscolana-roma': 'Tuscolana, Roma'
+      };
+      
+      container.innerHTML = `
+        <div style="margin-bottom: 1rem; padding: 1rem; background: rgba(34, 211, 238, 0.1); border-radius: 0.5rem; border: 1px solid rgba(34, 211, 238, 0.3);">
+          <div style="font-weight: 600; color: var(--neon-cyan); margin-bottom: 0.5rem;">
+            ${category.icon} ${category.name} - ${category.articles.length} blog
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 0.75rem;">
+          ${category.articles.map(article => {
+            const locationName = locationNames[article.location] || article.location;
+            return `
+              <div style="padding: 0.75rem; background: rgba(255,255,255,0.02); border-radius: 0.5rem; border: 1px solid rgba(255,255,255,0.05);">
+                <div style="font-size: 0.875rem; color: var(--text-primary); margin-bottom: 0.25rem;">
+                  ${locationName}
+                </div>
+                <a 
+                  href="${article.url}" 
+                  target="_blank"
+                  style="font-size: 0.75rem; color: var(--neon-cyan); text-decoration: none; display: inline-block; margin-top: 0.25rem;"
+                  onmouseover="this.style.textDecoration='underline'"
+                  onmouseout="this.style.textDecoration='none'"
+                >
+                  ${article.filename} →
+                </a>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      `;
     }
 
     // Filter handlers
