@@ -453,7 +453,7 @@
 
   <script>
     // Password (in produzione usare backend sicuro)
-    const ADMIN_PASSWORD = 'admin123'; // Password: admin123
+    const ADMIN_PASSWORD = 'webforge2024'; // Password: webforge2024
     const SESSION_KEY = 'admin_authenticated';
 
     // Check if already logged in
@@ -464,17 +464,22 @@
     // Login Form
     document.getElementById('loginForm').addEventListener('submit', (e) => {
       e.preventDefault();
-      const password = document.getElementById('password').value;
+      const password = document.getElementById('password').value.trim();
       const errorMsg = document.getElementById('errorMessage');
+      
+      // Debug (rimuovere in produzione)
+      console.log('Password inserita:', password);
+      console.log('Password attesa:', ADMIN_PASSWORD);
       
       if (password === ADMIN_PASSWORD) {
         sessionStorage.setItem(SESSION_KEY, 'true');
         showDashboard();
       } else {
         errorMsg.classList.add('show');
+        errorMsg.textContent = 'Password non corretta. La password è: ' + ADMIN_PASSWORD;
         setTimeout(() => {
           errorMsg.classList.remove('show');
-        }, 3000);
+        }, 5000);
       }
     });
 
