@@ -99,3 +99,4 @@ Per aggiungere illustrazione per nuova categoria:
 
 **Nota**: Le categorie senza illustrazione specifica usano `default-hero` o l'illustrazione più simile.
 
+

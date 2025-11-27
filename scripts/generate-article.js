@@ -123,3 +123,4 @@ console.log(`🔗 URL: ${canonicalUrl}`);
 console.log(`📝 Titolo: ${articleTitle}`);
 console.log('\n⚠️  Nota: Ricorda di aggiungere il contenuto HERO_CONTENT e ARTICLE_CONTENT manualmente o con template più avanzato.');
 
+

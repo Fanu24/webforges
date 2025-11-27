@@ -143,3 +143,4 @@ node test-config.js
 ### Script non trova categorie/località
 **Soluzione**: Verifica che `data/categories.js` e `data/locations.js` esistano e contengano i dati.
 
+

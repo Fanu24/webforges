@@ -57,3 +57,4 @@ Se riscontri problemi:
 2. Verifica che Node.js sia nel PATH: `where node`
 3. Controlla la versione: `node --version` (dovrebbe essere v18 o superiore)
 
+

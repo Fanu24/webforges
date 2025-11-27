@@ -49,11 +49,26 @@ try {
 }
 
 // Carica mapping contenuti (opzionale)
+let getCategoryMapping = () => ({});
 try {
   const mappingContent = fs.readFileSync(contentMappingPath, 'utf8');
   eval(mappingContent);
+  // Verifica che getCategoryMapping sia definito
+  if (typeof getCategoryMapping === 'undefined') {
+    // Se non esiste, crea una funzione helper
+    getCategoryMapping = (slug) => {
+      return categoryContentMapping[slug] || categoryContentMapping['default'] || {};
+    };
+  }
 } catch (e) {
-  console.warn('⚠️  Category-content-mapping.js non trovato');
+  console.warn('⚠️  Category-content-mapping.js non trovato, userò valori default');
+  getCategoryMapping = () => ({
+    actionNoun: 'contatti',
+    actionNounPlural: 'contatti',
+    serviceTerm: 'servizi online',
+    stat1: 'Sceglie il servizio',
+    heroSubtitle: 'Aumenta i clienti del 300% con un sito web professionale.'
+  });
 }
 
 // Carica illustrazioni (opzionale)
@@ -129,22 +144,156 @@ for (const category of categories) {
       article = article.replace(/<meta property="og:url" content="[^"]+">/g, `<meta property="og:url" content="${canonicalUrl}">`);
       article = article.replace(/<link rel="canonical" href="[^"]+">/g, `<link rel="canonical" href="${canonicalUrl}">`);
       
-      // Sostituzioni contenuti
+      // Ottieni mapping personalizzato per categoria
+      const mapping = getCategoryMapping(category.slug);
+      
+      // Capitalizza nome località (usato in più punti)
+      const locationNameCapitalized = location.name.charAt(0).toUpperCase() + location.name.slice(1);
+      
+      // Sostituzioni contenuti base
       article = article.replace(/Sito Web per Ristorante a Trastevere, Roma/g, articleTitle);
       article = article.replace(/Sito Web per Ristorante a Trastevere/g, `Sito Web per ${category.name} a ${location.name}`);
       article = article.replace(/Ristoranti • Trastevere, Roma/g, `${category.name} • ${location.name}, ${location.city}`);
       article = article.replace(/Trastevere, Roma/g, `${location.name}, ${location.city}`);
       article = article.replace(/Trastevere/g, location.name);
       article = article.replace(/trastevere/g, location.slug);
-      article = article.replace(/Ristorante/g, category.name);
-      article = article.replace(/ristorante/g, category.name.toLowerCase());
-      article = article.replace(/ristoranti/g, category.plural || category.name.toLowerCase());
-      article = article.replace(/Ristoranti/g, category.plural || category.name);
       
+      // Sostituzioni categoria con maiuscole corrette
+      // Prima sostituisci le occorrenze con contesto (per evitare sostituzioni errate)
+      article = article.replace(/\bRistoranti?\b/g, category.name);
+      article = article.replace(/\bristoranti?\b/g, category.name.toLowerCase());
+      article = article.replace(/\bristoranti\b/g, category.plural || category.name.toLowerCase());
+      article = article.replace(/\bRistoranti\b/g, category.plural || category.name);
+      
+      // Correggi "il ristorante" -> "il/la [categoria]" con articolo corretto
+      const articleDef = category.name.match(/^[AEIOU]/i) ? 'l\'' : (category.name.match(/^[F]/i) ? 'la' : 'il');
+      const articleIndef = category.name.match(/^[AEIOU]/i) ? 'un\'' : 'un';
+      article = article.replace(/\bil ristorante\b/gi, `${articleDef} ${category.name.toLowerCase()}`);
+      article = article.replace(/\bun ristorante\b/gi, `${articleIndef} ${category.name.toLowerCase()}`);
+      article = article.replace(/\bdel ristorante\b/gi, `dell${category.name.match(/^[AEIOU]/i) ? '\'' : 'a'} ${category.name.toLowerCase()}`);
+      article = article.replace(/\bper ristorante\b/gi, `per ${category.name.toLowerCase()}`);
+      
+      // Correggi "il/la agenzie" -> "le agenzie" (per plurali)
+      if (category.plural) {
+        article = article.replace(/\bil ${category.plural.toLowerCase()}\b/gi, `le ${category.plural.toLowerCase()}`);
+        article = article.replace(/\bun ${category.plural.toLowerCase()}\b/gi, `le ${category.plural.toLowerCase()}`);
+        article = article.replace(/\bdel ${category.plural.toLowerCase()}\b/gi, `delle ${category.plural.toLowerCase()}`);
+      }
+      
+      // Correggi duplicati tipo "agenzie immobiliari immobiliari"
+      article = article.replace(new RegExp(`\\b${category.plural || category.name.toLowerCase()} ${category.plural || category.name.toLowerCase()}\\b`, 'gi'), category.plural || category.name.toLowerCase());
+      
+      // Sostituzioni località
       if (location.city !== 'Roma') {
         article = article.replace(/, Roma/g, `, ${location.city}`);
-        article = article.replace(/Roma/g, location.city);
-        article = article.replace(/roma/g, location.city.toLowerCase());
+        article = article.replace(/\bRoma\b/g, location.city);
+        article = article.replace(/\broma\b/g, location.city.toLowerCase());
+      }
+      
+      // Sostituzioni personalizzate usando mapping
+      // Hero subtitle - sostituisci tutto il paragrafo hero-subtitle
+      if (mapping.heroSubtitle) {
+        let heroSubtitle = mapping.heroSubtitle
+          .replace(/\bristoranti?\b/gi, category.plural || category.name.toLowerCase())
+          .replace(/\bRistoranti?\b/g, category.plural || category.name)
+          .replace(/\bTrastevere\b/g, locationNameCapitalized)
+          .replace(/\bRoma\b/g, location.city)
+          .replace(/\btrastevere\b/g, location.slug)
+          .replace(/\broma\b/g, location.city.toLowerCase());
+        
+        // Aggiungi località se non presente
+        if (!heroSubtitle.includes(locationNameCapitalized) && !heroSubtitle.includes(location.name)) {
+          heroSubtitle = heroSubtitle.replace(/\.$/, ` a ${locationNameCapitalized}, ${location.city}.`);
+        } else {
+          // Sostituisci località con versione capitalizzata
+          heroSubtitle = heroSubtitle.replace(new RegExp(location.name, 'gi'), locationNameCapitalized);
+        }
+        
+        // Sostituisci l'intero paragrafo hero-subtitle
+        article = article.replace(
+          /<p class="hero-subtitle">[\s\S]*?<\/p>/,
+          `<p class="hero-subtitle">\n            ${heroSubtitle}</p>`
+        );
+      } else {
+        // Fallback: sostituisci solo "Aumenta i clienti" con termine appropriato
+        const increaseTerm = mapping.actionNounPlural || mapping.actionNoun || 'clienti';
+        article = article.replace(/Aumenta i clienti del 300%/gi, `Aumenta i ${increaseTerm} del 300%`);
+        article = article.replace(/Aumenta le clienti del 300%/gi, `Aumenta le ${increaseTerm} del 300%`);
+      }
+      
+      // Correggi "il tuo agenzie" -> "la tua agenzia" o "le tue agenzie"
+      if (category.plural) {
+        article = article.replace(/\bil tuo ${category.plural.toLowerCase()}\b/gi, `le tue ${category.plural.toLowerCase()}`);
+        article = article.replace(/\bdel tuo ${category.plural.toLowerCase()}\b/gi, `delle tue ${category.plural.toLowerCase()}`);
+      } else {
+        const articlePoss = category.name.match(/^[AEIOU]/i) ? 'la tua' : 'il tuo';
+        article = article.replace(/\bil tuo ${category.name.toLowerCase()}\b/gi, `${articlePoss} ${category.name.toLowerCase()}`);
+      }
+      
+      // Correggi breadcrumb - sostituzione diretta
+      const categoryNameLower = category.plural ? category.plural.toLowerCase() : category.name.toLowerCase();
+      const categoryNameProper = category.plural || category.name;
+      
+      // Sostituzione diretta nel breadcrumb
+      article = article.replace(
+        `${categoryNameLower} • ${locationNameCapitalized}`,
+        `${categoryNameProper} • ${locationNameCapitalized}`
+      );
+      
+      // Pattern per breadcrumb con stile inline (fallback)
+      article = article.replace(
+        new RegExp(`${categoryNameLower.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')} •`, 'gi'),
+        `${categoryNameProper} •`
+      );
+      
+      // Sostituisci "undefined" rimanenti
+      article = article.replace(/\bundefined\b/gi, mapping.actionNounPlural || mapping.actionNoun || 'clienti');
+      
+      // Sostituzioni termini specifici
+      article = article.replace(/\bprenotazioni\b/gi, mapping.actionNounPlural || mapping.actionNoun);
+      article = article.replace(/\bprenotazioni al mese\b/gi, `${mapping.actionNounPlural || mapping.actionNoun} al mese`);
+      article = article.replace(/\bprenotazioni\/mese\b/gi, `${mapping.actionNounPlural || mapping.actionNoun}/mese`);
+      article = article.replace(/\bfoto del menu\b/gi, mapping.serviceTerm === 'menu online' ? 'foto del menu' : (mapping.serviceTerm || 'servizi'));
+      article = article.replace(/\bmenu\b/gi, mapping.serviceTerm === 'menu online' ? 'menu' : (mapping.serviceTerm || 'servizi'));
+      article = article.replace(/\bSceglie il ristoranti?\b/gi, mapping.stat1 || `Sceglie ${articleDef} ${category.name.toLowerCase()}`);
+      article = article.replace(/\bSceglie l'?agenzie immobiliari\b/gi, mapping.stat1 || `Sceglie ${articleDef} ${category.name.toLowerCase()}`);
+      
+      // Correggi "il agenzie" -> "l'agenzia" o "le agenzie"
+      article = article.replace(/\bil agenzie\b/gi, `le ${category.plural || category.name.toLowerCase()}`);
+      article = article.replace(/\bun agenzie\b/gi, `un${category.name.match(/^[AEIOU]/i) ? '\'' : ''} ${category.name.toLowerCase()}`);
+      article = article.replace(/\bdel agenzie\b/gi, `delle ${category.plural || category.name.toLowerCase()}`);
+      
+      // Correggi maiuscole nel titolo breadcrumb e altri titoli
+      article = article.replace(new RegExp(`${category.name.toLowerCase()} •`, 'gi'), `${category.name} •`);
+      article = article.replace(new RegExp(`${category.plural ? category.plural.toLowerCase() : category.name.toLowerCase()} •`, 'gi'), `${category.plural || category.name} •`);
+      
+      // Correggi nome località nel breadcrumb e titoli (prima lettera maiuscola)
+      // locationNameCapitalized già definito sopra alla riga 151
+      article = article.replace(new RegExp(`• ${location.name.toLowerCase()},`, 'gi'), `• ${locationNameCapitalized},`);
+      article = article.replace(new RegExp(`• ${location.slug},`, 'gi'), `• ${locationNameCapitalized},`);
+      article = article.replace(new RegExp(`a ${location.name.toLowerCase()}\\b`, 'gi'), `a ${locationNameCapitalized}`);
+      article = article.replace(new RegExp(`a ${location.slug}\\b`, 'gi'), `a ${locationNameCapitalized}`);
+      
+      // Correggi anche nel titolo hero
+      article = article.replace(new RegExp(`<span class="text-gradient">[^<]*${location.name.toLowerCase()}[^<]*</span>`, 'gi'), 
+        `<span class="text-gradient">${category.name} a ${locationNameCapitalized}</span>`);
+      
+      // Sostituisci statistiche specifiche se disponibili
+      if (mapping.stat1) {
+        article = article.replace(/Sceglie il ristoranti? in base alle foto del menu/gi, mapping.stat1);
+        article = article.replace(/Sceglie l'?agenzie immobiliari in base alle foto del menu/gi, mapping.stat1);
+        article = article.replace(/Sceglie il servizio in base alle servizi online/gi, mapping.stat1);
+      }
+      
+      // Sostituisci "foto del menu" con termine appropriato
+      if (mapping.serviceTerm && mapping.serviceTerm !== 'menu online') {
+        article = article.replace(/foto del menu/gi, mapping.serviceTerm === 'annunci immobiliari' ? 'foto delle proprietà' : mapping.serviceTerm);
+      }
+      
+      // Sostituisci testo problema se disponibile
+      if (mapping.problemDetail) {
+        article = article.replace(/Un ristoranti? a \w+ senza sito web perde in media.*?prenotazioni al mese/gi, mapping.problemDetail);
+        article = article.replace(/Un'?agenzie immobiliari a \w+ senza sito web perde in media.*?prenotazioni al mese/gi, mapping.problemDetail);
       }
       
       // Rimuovi SVG personalizzati e usa placeholder semplice (come homepage)
