@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Meta Tags -->
+  <title>Sito Web per Dentisti a Cinisello Balsamo, Milano | WebForge Studio</title>
+  <meta name="description" content="Crea il sito web per il tuo dentisti a Cinisello Balsamo, Milano. Aumenta clienti, visibilità online, SEO locale. Preventivo gratuito.">
+  <meta name="keywords" content="sito web dentisti, dentisti Cinisello Balsamo, dentisti Milano, dentista, studio dentistico, igiene dentale, impianti">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Sito Web per Dentisti a Cinisello Balsamo, Milano | WebForge Studio">
+  <meta property="og:description" content="Crea il sito web per il tuo dentisti a Cinisello Balsamo, Milano. Aumenta clienti, visibilità online, SEO locale. Preventivo gratuito.">
+  <meta property="og:url" content="https://fanu24.github.io/webforges/blog/dentista-cinisello-balsamo-milano.html">
+  
+  <!-- Canonical -->
+  <link rel="canonical" href="https://fanu24.github.io/webforges/blog/dentista-cinisello-balsamo-milano.html">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Schema.org -->
+  <script type="application/ld+json" id="schema-org-data">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Sito Web per dentisti a cinisello-balsamo, Milano",
+    "author": {"@type": "Organization", "name": "WebForge Studio"},
+    "publisher": {"@type": "Organization", "name": "WebForge Studio"}
+  }
+  </script>
+  
+  <!-- Include Site Config -->
+  <script src="../config/site-config.js"></script>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --dark-primary: #050714;
+      --dark-secondary: #070A1F;
+      --dark-tertiary: #0B1029;
+      --neon-cyan: #22D3EE;
+      --neon-purple: #A855F7;
+      --neon-pink: #EC4899;
+      --text-primary: #F9FAFB;
+      --text-secondary: #9CA3AF;
+      --text-disabled: #6B7280;
+      --border-subtle: rgba(148, 163, 184, 0.3);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--dark-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        padding: 0 1.5rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .container {
+        padding: 0 2rem;
+      }
+    }
+
+    .text-gradient {
+      background: linear-gradient(to right, #22d3ee, #ec4899, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      background: rgba(15, 23, 42, 0.6);
+      border-bottom: 1px solid rgba(34, 211, 238, 0.2);
+    }
+
+    .navbar-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    .nav-links {
+      display: none;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .nav-links {
+        display: flex;
+      }
+    }
+
+    .nav-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav-link:hover {
+      color: var(--neon-cyan);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(to right, var(--neon-cyan), var(--neon-purple));
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .btn-primary {
+      padding: 0.625rem 1.5rem;
+      background: linear-gradient(to right, #06b6d4, #9333ea);
+      border-radius: 9999px;
+      font-weight: 600;
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 32px rgba(34, 211, 238, 0.6);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-background {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .hero-background::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom right, #0f172a, var(--dark-tertiary), #0f172a);
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      animation: float 20s ease-in-out infinite;
+    }
+
+    .blob-1 {
+      width: 288px;
+      height: 288px;
+      background: rgba(34, 211, 238, 0.2);
+      top: 80px;
+      left: 40px;
+      animation-delay: 0s;
+    }
+
+    .blob-2 {
+      width: 384px;
+      height: 384px;
+      background: rgba(168, 85, 247, 0.2);
+      bottom: 80px;
+      right: 40px;
+      animation-delay: 5s;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translate(0, 0) scale(1);
+      }
+      33% {
+        transform: translate(30px, -30px) scale(1.2);
+      }
+      66% {
+        transform: translate(-30px, 30px) scale(1.3);
+      }
+    }
+
+    .grid-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.1;
+      background-image: 
+        linear-gradient(rgba(148, 163, 184, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, 0.1) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .hero-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-size: 2.25rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .hero-title {
+        font-size: 3.75rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .hero-title {
+        font-size: 4.5rem;
+      }
+    }
+
+    .hero-subtitle {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      max-width: 36rem;
+    }
+
+    @media (min-width: 768px) {
+      .hero-subtitle {
+        font-size: 1.25rem;
+      }
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    @media (min-width: 640px) {
+      .hero-cta {
+        flex-direction: row;
+      }
+    }
+
+    .btn-secondary {
+      padding: 1rem 2rem;
+      border: 2px solid rgba(51, 65, 85, 1);
+      border-radius: 9999px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-decoration: none;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--neon-cyan);
+      color: var(--neon-cyan);
+    }
+
+    .hero-benefits {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .benefit-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-disabled);
+      font-size: 0.875rem;
+    }
+
+    .hero-mockup {
+      position: relative;
+    }
+
+    .mockup-laptop {
+      position: relative;
+      max-width: 100%;
+    }
+
+    .mockup-card {
+      border-radius: 1rem;
+      padding: 1rem;
+      animation: floatCard 6s ease-in-out infinite;
+    }
+
+    @keyframes floatCard {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-20px) rotate(2deg);
+      }
+    }
+
+    .mockup-screen {
+      aspect-ratio: 16/9;
+      background: linear-gradient(to bottom right, rgba(6, 182, 212, 0.2), rgba(168, 85, 247, 0.2), rgba(236, 72, 153, 0.2));
+      border-radius: 0.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mockup-circle {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mockup-circle::before {
+      content: '';
+      width: 128px;
+      height: 128px;
+      border: 4px solid rgba(34, 211, 238, 0.3);
+      border-radius: 50%;
+      animation: rotate 20s linear infinite;
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .mockup-mobile {
+      position: absolute;
+      bottom: -40px;
+      right: -40px;
+      width: 128px;
+      height: 224px;
+      border-radius: 0.75rem;
+      padding: 0.5rem;
+      animation: floatMobile 8s ease-in-out infinite;
+      animation-delay: 1s;
+    }
+
+    @keyframes floatMobile {
+      0%, 100% {
+        transform: translate(0, 0);
+      }
+      50% {
+        transform: translate(-10px, -10px);
+      }
+    }
+
+    .mockup-mobile-screen {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom right, rgba(168, 85, 247, 0.2), rgba(236, 72, 153, 0.2));
+      border-radius: 0.5rem;
+    }
+
+    .hidden-mobile {
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      .hidden-mobile {
+        display: block;
+      }
+    }
+
+    /* Sections */
+    .section {
+      padding: 4rem 0;
+      position: relative;
+    }
+
+    @media (min-width: 768px) {
+      .section {
+        padding: 6rem 0;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .section {
+        padding: 7rem 0;
+      }
+    }
+
+    .section-alt {
+      background-color: var(--dark-secondary);
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .section-title {
+        font-size: 2.5rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .section-title {
+        font-size: 3rem;
+      }
+    }
+
+    .section-subtitle {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      text-align: center;
+      max-width: 42rem;
+      margin: 0 auto 4rem;
+    }
+
+    /* Cards */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .card {
+      border-radius: 1rem;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    @media (min-width: 768px) {
+      .card {
+        padding: 2rem;
+      }
+    }
+
+    .card:hover {
+      transform: translateY(-5px) scale(1.02);
+    }
+
+    .card-icon {
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: 0.75rem;
+      background: linear-gradient(to bottom right, #06b6d4, #9333ea);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.75rem;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+    }
+
+    .card-description {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Stats Section */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .stat-card {
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .stat-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .stat-value {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(to right, #22d3ee, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      color: var(--text-secondary);
+      font-size: 1rem;
+    }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid rgba(51, 65, 85, 1);
+      background-color: var(--dark-primary);
+      position: relative;
+      padding: 3rem 0;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--neon-cyan), transparent);
+      opacity: 0.5;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(51, 65, 85, 1);
+      padding-top: 2rem;
+      text-align: center;
+      color: var(--text-disabled);
+      font-size: 0.875rem;
+    }
+
+    /* Interactive Background */
+    .interactive-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .particles-container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0.6;
+      transition: transform 0.3s ease-out;
+    }
+
+    .gradient-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.3;
+      transition: transform 0.5s ease-out;
+      pointer-events: none;
+    }
+
+    .gradient-orb-1 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(34, 211, 238, 0.4), transparent);
+    }
+
+    .gradient-orb-2 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(168, 85, 247, 0.4), transparent);
+    }
+
+    .gradient-orb-3 {
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, rgba(236, 72, 153, 0.4), transparent);
+    }
+
+    .card-interactive {
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card-interactive::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(34, 211, 238, 0.2), transparent);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .card-interactive:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .card-interactive:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(34, 211, 238, 0.3), 0 0 60px rgba(168, 85, 247, 0.2);
+    }
+
+    .card-interactive > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* SVG Animations for Restaurant Hero */
+    @keyframes floatPlate {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(5deg); }
+    }
+    @keyframes floatFork {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(-3deg); }
+    }
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.1); }
+    }
+    .hero-illustration .plate-anim {
+      animation: floatPlate 3s ease-in-out infinite;
+      transform-origin: center;
+    }
+    .hero-illustration .plate-anim-delay1 {
+      animation-delay: 0.5s;
+    }
+    .hero-illustration .plate-anim-delay2 {
+      animation-delay: 1s;
+    }
+    .hero-illustration .fork-anim {
+      animation: floatFork 2.5s ease-in-out infinite;
+      transform-origin: center;
+    }
+    .hero-illustration .glow-anim {
+      animation: pulseGlow 2s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body>
+  <!-- Interactive Background -->
+  <div class="interactive-background" id="interactiveBackground">
+    <div class="particles-container" id="particlesContainer"></div>
+    <div class="gradient-orb gradient-orb-1" id="gradientOrb1"></div>
+    <div class="gradient-orb gradient-orb-2" id="gradientOrb2"></div>
+    <div class="gradient-orb gradient-orb-3" id="gradientOrb3"></div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <div class="navbar-content">
+        <a href="../" class="logo">
+          <span style="color: var(--neon-cyan);">⚡</span>
+          <span class="text-gradient" id="site-name-nav">WebForge Studio</span>
+        </a>
+        <div class="nav-links">
+          <a href="../" class="nav-link">Home</a>
+          <a href="../#servizi" class="nav-link">Servizi</a>
+          <a href="../#contatti" class="nav-link">Contatti</a>
+          <a href="../#contatti" class="btn-primary">Richiedi preventivo</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-background">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="grid-pattern"></div>
+    </div>
+    <div class="container hero-content">
+      <div class="hero-grid">
+        <div>
+          <div class="hero-badge glass">
+            <span style="display: inline-flex; align-items: center; width: 20px; height: 20px; color: var(--neon-cyan);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.1 13.34l2.83-2.83L3.91 3.5c-1.56 1.56-1.56 4.09 0 5.66l4.19 4.18zm6.78-1.81c1.53.71 3.68.21 5.27-1.38 1.91-1.91 2.28-4.65.81-6.12-1.46-1.46-4.2-1.1-6.12.81-1.59 1.59-2.09 3.74-1.38 5.27L3.7 19.87l1.41 1.41L12 14.41l6.88 6.88 1.41-1.41L13.41 13l1.47-1.47z" fill="currentColor"/>
+              </svg>
+            </span>
+            <span style="font-size: 0.875rem; color: var(--text-secondary);">dentisti • cinisello-balsamo, Milano</span>
+          </div>
+          <h1 class="hero-title">
+            <span>Sito Web per</span><br>
+            <span class="text-gradient">dentisti a cinisello-balsamo</span>
+          </h1>
+          <p class="hero-subtitle">
+            Aumenta i undefined del <strong style="color: var(--neon-cyan);">300%</strong> con un sito web professionale. Siti web per dentisti con servizi online, prenotazioni e SEO ottimizzato a cinisello-balsamo, Milano.</p>
+          <div class="hero-cta">
+            <a href="../#contatti?categoria=dentisti&localita=cinisello-balsamo-milano" class="btn-primary" style="padding: 1rem 2rem;">
+              Richiedi Preventivo Gratuito →
+            </a>
+            <a href="../#servizi" class="btn-secondary">Scopri i Servizi</a>
+          </div>
+          <div class="hero-benefits">
+            <div class="benefit-item">
+              <span style="display: inline-flex; align-items: center; width: 20px; height: 20px; color: var(--neon-cyan);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z" fill="currentColor"/>
+                </svg>
+              </span>
+              <span>+300% prenotazioni</span>
+            </div>
+            <div class="benefit-item">
+              <span style="display: inline-flex; align-items: center; width: 20px; height: 20px; color: var(--neon-purple);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z" fill="currentColor"/>
+                </svg>
+              </span>
+              <span>€15K+ Ricavi Extra/Mese</span>
+            </div>
+            <div class="benefit-item">
+              <span style="display: inline-flex; align-items: center; width: 20px; height: 20px; color: var(--neon-pink);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" fill="currentColor"/>
+                </svg>
+              </span>
+              <span>85% Cerca Online Prima</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-mockup hidden-mobile">
+          <div class="hero-illustration" style="max-width: 100%; height: auto; display: flex; align-items: center; justify-content: center; min-height: 300px;">
+            <div style="width: 200px; height: 200px; border-radius: 50%; background: linear-gradient(135deg, rgba(34, 211, 238, 0.2), rgba(168, 85, 247, 0.2)); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 40px rgba(34, 211, 238, 0.3);">
+              <span style="font-size: 4rem; opacity: 0.6;">🦷</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Il Problema Section -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">
+        <span>Il Problema: Senza Sito Web</span><br>
+        <span class="text-gradient">Stai Perdendo Migliaia di clienti</span>
+      </h2>
+      <p class="section-subtitle">
+        cinisello-balsamo è uno dei quartieri più turistici di Milano. Ogni giorno, centinaia di persone cercano dentisti online. 
+        Senza un sito web professionale, il tuo dentisti è invisibile.
+      </p>
+      
+      <div class="stats-grid">
+        <div class="stat-card glass card-interactive">
+          <div class="stat-icon" style="display: flex; justify-content: center; align-items: center; width: 64px; height: 64px; margin: 0 auto 1rem; color: var(--neon-cyan);">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="stat-value">85%</div>
+          <div class="stat-label">Cerca dentisti online prima di prenotare</div>
+          <div style="font-size: 0.75rem; color: var(--text-disabled); margin-top: 0.5rem;">Fonte: Google, 2023</div>
+        </div>
+        <div class="stat-card glass card-interactive">
+          <div class="stat-icon" style="display: flex; justify-content: center; align-items: center; width: 64px; height: 64px; margin: 0 auto 1rem; color: var(--neon-purple);">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="stat-value">73%</div>
+          <div class="stat-label">Non prenota se non trova informazioni online</div>
+          <div style="font-size: 0.75rem; color: var(--text-disabled); margin-top: 0.5rem;">Fonte: TripAdvisor, 2023</div>
+        </div>
+        <div class="stat-card glass card-interactive">
+          <div class="stat-icon" style="display: flex; justify-content: center; align-items: center; width: 64px; height: 64px; margin: 0 auto 1rem; color: var(--neon-pink);">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="stat-value">60%</div>
+          <div class="stat-label">Sceglie il dentisti in base alle foto del menu</div>
+          <div style="font-size: 0.75rem; color: var(--text-disabled); margin-top: 0.5rem;">Fonte: OpenTable, 2023</div>
+        </div>
+        <div class="stat-card glass card-interactive">
+          <div class="stat-icon" style="display: flex; justify-content: center; align-items: center; width: 64px; height: 64px; margin: 0 auto 1rem; color: var(--neon-cyan);">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="stat-value">€90K+</div>
+          <div class="stat-label">Ricavi persi all'anno senza sito web</div>
+          <div style="font-size: 0.75rem; color: var(--text-disabled); margin-top: 0.5rem;">15-20 prenotazioni/mese perse</div>
+        </div>
+      </div>
+      
+      <div style="max-width: 900px; margin: 3rem auto 0; padding: 2rem; background: rgba(236, 72, 153, 0.1); border-radius: 1rem; border: 1px solid rgba(236, 72, 153, 0.3);">
+        <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: var(--neon-pink);">Costo dell'Inazione</h3>
+        <p style="color: var(--text-secondary); line-height: 1.8; font-size: 1.125rem;">
+          Un dentisti a cinisello-balsamo senza sito web perde in media <strong style="color: var(--text-primary);">15-20 prenotazioni al mese</strong>. 
+          Con un conto medio di €50 a persona, significa <strong style="color: var(--neon-cyan);">€7.500-€10.000 di ricavi persi mensilmente</strong>. 
+          In un anno, questo si traduce in <strong style="color: var(--neon-pink);">€90.000-€120.000 di ricavi persi</strong>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">
+        <span>Perché il tuo dentisti</span><br>
+        <span class="text-gradient">Ha Bisogno di un Sito Web</span>
+      </h2>
+      <p class="section-subtitle">
+        cinisello-balsamo è uno dei quartieri più frequentati di Milano. Senza un sito web, stai perdendo migliaia di clienti potenziali ogni giorno.
+      </p>
+      
+      <div class="cards-grid">
+        <div class="card glass card-interactive">
+          <div class="card-icon" style="display: flex; align-items: center; justify-content: center; color: var(--neon-cyan);">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" fill="currentColor"/>
+            </svg>
+          </div>
+          <h3 class="card-title">Visibilità su Google</h3>
+          <p class="card-description">
+            Quando qualcuno cerca "dentisti cinisello-balsamo", la tua dentisti appare tra i primi risultati. Più clienti, più prenotazioni, più successo.
+          </p>
+        </div>
+        
+        <div class="card glass card-interactive">
+          <div class="card-icon" style="display: flex; align-items: center; justify-content: center; color: var(--neon-purple);">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" fill="currentColor"/>
+            </svg>
+          </div>
+          <h3 class="card-title">servizi online Sempre Aggiornato</h3>
+          <p class="card-description">
+            Mostra il tuo menu con foto appetitose, prezzi chiari e informazioni su allergeni. I clienti prenotano di più quando vedono cosa offri.
+          </p>
+        </div>
+        
+        <div class="card glass card-interactive">
+          <div class="card-icon" style="display: flex; align-items: center; justify-content: center; color: var(--neon-pink);">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z" fill="currentColor"/>
+            </svg>
+          </div>
+          <h3 class="card-title">prenotazioni 24 Ore su 24</h3>
+          <p class="card-description">
+            Accetta prenotazioni anche quando il dentisti è chiuso. I turisti che visitano cinisello-balsamo possono prenotare in qualsiasi momento.
+          </p>
+        </div>
+        
+        <div class="card glass card-interactive">
+          <div class="card-icon" style="display: flex; align-items: center; justify-content: center; color: var(--neon-cyan);">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" fill="currentColor"/>
+            </svg>
+          </div>
+          <h3 class="card-title">Mostra la Tua Cucina</h3>
+          <p class="card-description">
+            Foto professionali dei piatti, ambiente del dentisti, recensioni positive. Crea fiducia e invoglia i clienti a prenotare.
+          </p>
+        </div>
+        
+        <div class="card glass card-interactive">
+          <div class="card-icon" style="display: flex; align-items: center; justify-content: center; color: var(--neon-purple);">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor"/>
+            </svg>
+          </div>
+          <h3 class="card-title">SEO dentisti Ottimizzato</h3>
+          <p class="card-description">
+            il tuo dentisti appare su Google Maps quando qualcuno cerca nella zona. Essenziale per catturare turisti e milanoni in giro per cinisello-balsamo.
+          </p>
+        </div>
+        
+        <div class="card glass card-interactive">
+          <div class="card-icon" style="display: flex; align-items: center; justify-content: center; color: var(--neon-pink);">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z" fill="currentColor"/>
+            </svg>
+          </div>
+          <h3 class="card-title">Comunica Eventi e Offerte</h3>
+          <p class="card-description">
+            Promuovi serate speciali, menu del giorno, eventi. Aumenta l'affluenza nei giorni più tranquilli e massimizza i ricavi.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Perché cinisello-balsamo Section -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">
+        <span>Perché cinisello-balsamo è</span><br>
+        <span class="text-gradient">Perfetto per il tuo dentisti Online</span>
+      </h2>
+      <p class="section-subtitle">
+        cinisello-balsamo è uno dei quartieri più iconici e frequentati di Milano. Con oltre 2 milioni di turisti all'anno, 
+        avere un sito web professionale non è un optional: è essenziale.
+      </p>
+      
+      <div style="display: grid; grid-template-columns: 1fr; gap: 2rem; max-width: 1000px; margin: 0 auto;">
+        <div class="card glass card-interactive" style="display: grid; grid-template-columns: 1fr; gap: 1.5rem; padding: 2.5rem;">
+          <div style="display: flex; align-items: start; gap: 1.5rem;">
+            <div style="flex-shrink: 0; width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(34, 211, 238, 0.2), rgba(168, 85, 247, 0.2)); border-radius: 1rem; color: var(--neon-cyan);">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor"/>
+              </svg>
+            </div>
+            <div>
+              <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--text-primary);">2+ Milioni di Turisti all'Anno</h3>
+              <p style="color: var(--text-secondary); line-height: 1.8;">
+                cinisello-balsamo attira milioni di visitatori ogni anno. La maggior parte cerca dentisti online prima di arrivare. 
+                Senza un sito web, perdi questa enorme opportunità.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card glass card-interactive" style="display: grid; grid-template-columns: 1fr; gap: 1.5rem; padding: 2.5rem;">
+          <div style="display: flex; align-items: start; gap: 1.5rem;">
+            <div style="flex-shrink: 0; width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(236, 72, 153, 0.2)); border-radius: 1rem; color: var(--neon-purple);">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z" fill="currentColor"/>
+              </svg>
+            </div>
+            <div>
+              <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--text-primary);">Alta Competizione</h3>
+              <p style="color: var(--text-secondary); line-height: 1.8;">
+                cinisello-balsamo ha centinaia di dentisti. Per distinguerti, devi essere visibile online. 
+                Un sito web professionale ti fa apparire tra i primi risultati quando qualcuno cerca nella zona.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card glass card-interactive" style="display: grid; grid-template-columns: 1fr; gap: 1.5rem; padding: 2.5rem;">
+          <div style="display: flex; align-items: start; gap: 1.5rem;">
+            <div style="flex-shrink: 0; width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(236, 72, 153, 0.2), rgba(34, 211, 238, 0.2)); border-radius: 1rem; color: var(--neon-pink);">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z" fill="currentColor"/>
+              </svg>
+            </div>
+            <div>
+              <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--text-primary);">Ricerca Mobile Dominante</h3>
+              <p style="color: var(--text-secondary); line-height: 1.8;">
+                Il 85% delle ricerche di dentisti a cinisello-balsamo avviene da smartphone mentre le persone camminano per il quartiere. 
+                Il tuo sito deve essere perfetto su mobile.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Economic Benefits Section -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">
+        <span>Investimento che si</span><br>
+        <span class="text-gradient">Ripaga in 1 Mese</span>
+      </h2>
+      <p class="section-subtitle">
+        Un sito web professionale costa €2.500-€4.000. Ma guarda cosa puoi guadagnare:
+      </p>
+      
+      <div class="cards-grid" style="max-width: 1000px; margin: 0 auto;">
+        <div class="card glass card-interactive" style="text-align: center;">
+          <div class="card-icon" style="margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; color: var(--neon-cyan);">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z" fill="currentColor"/>
+            </svg>
+          </div>
+          <div style="font-size: 3rem; font-weight: 700; background: linear-gradient(to right, #22d3ee, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem;">+20</div>
+          <h3 class="card-title">prenotazioni Extra/Mese</h3>
+          <p class="card-description">
+            Con un sito web ottimizzato, ricevi 20 prenotazioni in più ogni mese.
+          </p>
+        </div>
+        
+        <div class="card glass card-interactive" style="text-align: center;">
+          <div class="card-icon" style="margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; color: var(--neon-purple);">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z" fill="currentColor"/>
+            </svg>
+          </div>
+          <div style="font-size: 3rem; font-weight: 700; background: linear-gradient(to right, #22d3ee, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem;">€50</div>
+          <h3 class="card-title">conto medio per Persona</h3>
+          <p class="card-description">
+            Con un conto medio di €50 a persona, ogni prenotazione conta.
+          </p>
+        </div>
+        
+        <div class="card glass card-interactive" style="text-align: center;">
+          <div class="card-icon" style="margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; color: var(--neon-pink);">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z" fill="currentColor"/>
+            </svg>
+          </div>
+          <div style="font-size: 3rem; font-weight: 700; background: linear-gradient(to right, #22d3ee, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem;">€12K</div>
+          <h3 class="card-title">Ricavi Extra all'Anno</h3>
+          <p class="card-description">
+            20 prenotazioni × €50 × 12 mesi = €12.000 ricavi extra annui. Investimento recuperato in 3-4 mesi.
+          </p>
+        </div>
+      </div>
+      
+      <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: rgba(34, 211, 238, 0.1); border-radius: 1rem; border: 1px solid rgba(34, 211, 238, 0.3);">
+        <div style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;">
+          ROI: <span class="text-gradient">3.000%</span> nel primo anno
+        </div>
+        <p style="color: var(--text-secondary);">
+          Investi €3.000, guadagni €120.000 in ricavi extra. L'investimento migliore per il tuo dentisti.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">
+        <span>Domande Frequenti</span><br>
+        <span class="text-gradient">Tutto Quello che Vuoi Sapere</span>
+      </h2>
+      <p class="section-subtitle">
+        Risposte alle domande più comuni sui siti web per dentisti a cinisello-balsamo.
+      </p>
+      
+      <div style="max-width: 900px; margin: 0 auto; display: grid; gap: 1.5rem;">
+        <div class="card glass card-interactive" style="padding: 2rem;">
+          <div style="display: flex; align-items: start; gap: 1rem; margin-bottom: 1rem;">
+            <div style="flex-shrink: 0; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: var(--neon-cyan);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z" fill="currentColor"/>
+              </svg>
+            </div>
+            <div>
+              <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--text-primary);">Quanto costa un sito web per dentisti?</h3>
+              <p style="color: var(--text-secondary); line-height: 1.8;">
+                Un sito web professionale per dentisti costa tra €2.500 e €4.000. Include design personalizzato, servizi online, 
+                sistema prenotazioni, SEO dentisti ottimizzato e responsive mobile. L'investimento si ripaga in 3-4 mesi con le prenotazioni extra.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card glass card-interactive" style="padding: 2rem;">
+          <div style="display: flex; align-items: start; gap: 1rem; margin-bottom: 1rem;">
+            <div style="flex-shrink: 0; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: var(--neon-purple);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z" fill="currentColor"/>
+              </svg>
+            </div>
+            <div>
+              <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--text-primary);">Quanto tempo ci vuole per realizzare il sito?</h3>
+              <p style="color: var(--text-secondary); line-height: 1.8;">
+                In media, un sito web professionale per dentisti viene completato in 2-3 settimane. Questo include design, 
+                sviluppo, integrazione menu e prenotazioni, ottimizzazione SEO e test. Ti teniamo aggiornato durante tutto il processo.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card glass card-interactive" style="padding: 2rem;">
+          <div style="display: flex; align-items: start; gap: 1rem; margin-bottom: 1rem;">
+            <div style="flex-shrink: 0; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: var(--neon-pink);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z" fill="currentColor"/>
+              </svg>
+            </div>
+            <div>
+              <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--text-primary);">Posso aggiornare il menu da solo?</h3>
+              <p style="color: var(--text-secondary); line-height: 1.8;">
+                Sì! Ti forniamo un pannello di controllo semplice e intuitivo dove puoi aggiornare menu, prezzi, foto e informazioni 
+                in qualsiasi momento, senza bisogno di conoscenze tecniche. Ti mostriamo come usarlo durante la consegna.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card glass card-interactive" style="padding: 2rem;">
+          <div style="display: flex; align-items: start; gap: 1rem; margin-bottom: 1rem;">
+            <div style="flex-shrink: 0; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: var(--neon-cyan);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z" fill="currentColor"/>
+              </svg>
+            </div>
+            <div>
+              <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--text-primary);">Il sito funziona su smartphone?</h3>
+              <p style="color: var(--text-secondary); line-height: 1.8;">
+                Assolutamente sì! Il 85% delle ricerche di dentisti a cinisello-balsamo avviene da smartphone. Il tuo sito sarà 
+                perfettamente ottimizzato per mobile, con menu facile da navigare e prenotazioni con un solo tap.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section">
+    <div class="container">
+      <div style="max-width: 800px; margin: 0 auto; text-align: center; padding: 4rem 2rem; background: linear-gradient(135deg, rgba(34, 211, 238, 0.1), rgba(168, 85, 247, 0.1)); border-radius: 2rem; border: 1px solid rgba(255, 255, 255, 0.1);">
+        <h2 class="section-title" style="margin-bottom: 1.5rem;">
+          Pronto ad Aumentare<br>
+          <span class="text-gradient">le prenotazioni?</span>
+        </h2>
+        <p class="section-subtitle" style="margin-bottom: 2.5rem;">
+          Contattaci oggi per una consulenza gratuita. Analizzeremo le tue esigenze e ti proporremo 
+          la soluzione perfetta per far crescere il tuo dentisti a cinisello-balsamo.
+        </p>
+        <a href="../#contatti?categoria=dentisti&localita=cinisello-balsamo-milano" class="btn-primary" style="padding: 1.25rem 3rem; font-size: 1.125rem;">
+          Richiedi Preventivo Gratuito →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p id="footer-copyright">WebForge Studio © 2024 - Siti Web per dentisti a Milano e Milano</p>
+        <p style="margin-top: 0.5rem;">
+          <a href="../" style="color: var(--neon-cyan); text-decoration: none;">Home</a> | 
+          <a href="../#servizi" style="color: var(--neon-cyan); text-decoration: none;">Servizi</a> | 
+          <a href="../#contatti" style="color: var(--neon-cyan); text-decoration: none;">Contatti</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Inietta valori da SITE_CONFIG nel DOM
+    if (typeof SITE_CONFIG !== 'undefined') {
+      // Aggiorna nome sito nella navbar
+      const siteNameNav = document.getElementById('site-name-nav');
+      if (siteNameNav) siteNameNav.textContent = SITE_CONFIG.SITE_NAME;
+      
+      // Aggiorna copyright nel footer
+      const footerCopyright = document.getElementById('footer-copyright');
+      if (footerCopyright) {
+        footerCopyright.textContent = `${SITE_CONFIG.SITE_NAME} © ${SITE_CONFIG.CURRENT_YEAR} - ${SITE_CONFIG.FOOTER_TEXT}`;
+      }
+      
+      // Aggiorna Schema.org
+      const schemaScript = document.getElementById('schema-org-data');
+      if (schemaScript) {
+        try {
+          const schema = JSON.parse(schemaScript.textContent);
+          schema.author.name = SITE_CONFIG.SITE_NAME;
+          schema.publisher.name = SITE_CONFIG.SITE_NAME;
+          schemaScript.textContent = JSON.stringify(schema);
+        } catch (e) {
+          console.warn('Errore aggiornamento Schema.org:', e);
+        }
+      }
+    }
+    
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 20) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Interactive Background (simplified version)
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let targetX = mouseX;
+    let targetY = mouseY;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function smoothMouseTracking() {
+      targetX += (mouseX - targetX) * 0.1;
+      targetY += (mouseY - targetY) * 0.1;
+      
+      const orb1 = document.getElementById('gradientOrb1');
+      const orb2 = document.getElementById('gradientOrb2');
+      const orb3 = document.getElementById('gradientOrb3');
+      
+      if (orb1 && orb2 && orb3) {
+        const centerX = window.innerWidth / 2;
+        const centerY = window.innerHeight / 2;
+        
+        orb1.style.transform = `translate(${centerX + (targetX - centerX) * 0.3 - 200}px, ${centerY + (targetY - centerY) * 0.3 - 200}px)`;
+        orb2.style.transform = `translate(${centerX + (targetX - centerX) * -0.2 - 250}px, ${centerY + (targetY - centerY) * -0.2 - 250}px)`;
+        orb3.style.transform = `translate(${centerX + (targetX - centerX) * 0.25 - 175}px, ${centerY + (targetY - centerY) * -0.25 - 175}px)`;
+      }
+      
+      requestAnimationFrame(smoothMouseTracking);
+    }
+    smoothMouseTracking();
+
+    // Track article view
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'article_view', {
+        'article_title': 'Sito Web per dentisti a cinisello-balsamo, Milano',
+        'article_category': 'dentisti',
+        'article_location': 'cinisello-balsamo-milano'
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Meta Tags -->
+  <title>{{ARTICLE_TITLE}} | {{SITE_NAME}}</title>
+  <meta name="description" content="{{ARTICLE_DESCRIPTION}}">
+  <meta name="keywords" content="{{ARTICLE_KEYWORDS}}">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ARTICLE_TITLE}} | {{SITE_NAME}}">
+  <meta property="og:description" content="{{ARTICLE_DESCRIPTION}}">
+  <meta property="og:url" content="{{CANONICAL_URL}}">
+  
+  <!-- Canonical -->
+  <link rel="canonical" href="{{CANONICAL_URL}}">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "{{ARTICLE_TITLE}}",
+    "author": {"@type": "Organization", "name": "{{SITE_NAME}}"},
+    "publisher": {"@type": "Organization", "name": "{{SITE_NAME}}"}
+  }
+  </script>
+  
+  <!-- Include Site Config -->
+  <script src="../config/site-config.js"></script>
+  
+  <style>
+    /* CSS Styles - Copiare da articolo esistente */
+    /* ... styles qui ... */
+  </style>
+</head>
+<body>
+  <!-- Interactive Background -->
+  <div class="interactive-background" id="interactiveBackground">
+    <div class="particles-container" id="particlesContainer"></div>
+    <div class="gradient-orb gradient-orb-1" id="gradientOrb1"></div>
+    <div class="gradient-orb gradient-orb-2" id="gradientOrb2"></div>
+    <div class="gradient-orb gradient-orb-3" id="gradientOrb3"></div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <div class="navbar-content">
+        <a href="../" class="logo">
+          <span style="color: var(--neon-cyan);">⚡</span>
+          <span class="text-gradient" id="site-name-nav">{{SITE_NAME}}</span>
+        </a>
+        <div class="nav-links">
+          <a href="../" class="nav-link">{{NAV_HOME}}</a>
+          <a href="../#servizi" class="nav-link">{{NAV_SERVICES}}</a>
+          <a href="../#contatti" class="nav-link">{{NAV_CONTACTS}}</a>
+          <a href="../#contatti" class="btn-primary">{{CTA_TEXT}}</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <!-- Contenuto Hero specifico per categoria -->
+    {{HERO_CONTENT}}
+  </section>
+
+  <!-- Contenuto Articolo -->
+  {{ARTICLE_CONTENT}}
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p id="footer-copyright">{{SITE_NAME}} © {{CURRENT_YEAR}} - {{FOOTER_TEXT}}</p>
+        <p style="margin-top: 0.5rem;">
+          <a href="../" style="color: var(--neon-cyan); text-decoration: none;">{{NAV_HOME}}</a> | 
+          <a href="../#servizi" style="color: var(--neon-cyan); text-decoration: none;">{{NAV_SERVICES}}</a> | 
+          <a href="../#contatti" style="color: var(--neon-cyan); text-decoration: none;">{{NAV_CONTACTS}}</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Inietta valori da SITE_CONFIG nel DOM
+    if (typeof SITE_CONFIG !== 'undefined') {
+      // Aggiorna nome sito nella navbar
+      const siteNameNav = document.getElementById('site-name-nav');
+      if (siteNameNav) siteNameNav.textContent = SITE_CONFIG.SITE_NAME;
+      
+      // Aggiorna copyright nel footer
+      const footerCopyright = document.getElementById('footer-copyright');
+      if (footerCopyright) {
+        footerCopyright.textContent = `${SITE_CONFIG.SITE_NAME} © ${SITE_CONFIG.CURRENT_YEAR} - ${SITE_CONFIG.FOOTER_TEXT}`;
+      }
+    }
+    
+    // Altri script...
+  </script>
+</body>
+</html>
+
