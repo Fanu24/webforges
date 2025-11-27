@@ -723,6 +723,37 @@
       position: relative;
       z-index: 1;
     }
+
+    /* SVG Animations for Restaurant Hero */
+    @keyframes floatPlate {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(5deg); }
+    }
+    @keyframes floatFork {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(-3deg); }
+    }
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.1); }
+    }
+    .hero-illustration .plate-anim {
+      animation: floatPlate 3s ease-in-out infinite;
+      transform-origin: center;
+    }
+    .hero-illustration .plate-anim-delay1 {
+      animation-delay: 0.5s;
+    }
+    .hero-illustration .plate-anim-delay2 {
+      animation-delay: 1s;
+    }
+    .hero-illustration .fork-anim {
+      animation: floatFork 2.5s ease-in-out infinite;
+      transform-origin: center;
+    }
+    .hero-illustration .glow-anim {
+      animation: pulseGlow 2s ease-in-out infinite;
+    }
   </style>
 </head>
 <body>
@@ -823,25 +854,6 @@
                   <stop offset="0%" style="stop-color:#ec4899;stop-opacity:0.2" />
                   <stop offset="100%" style="stop-color:#22d3ee;stop-opacity:0.2" />
                 </linearGradient>
-                <style>
-                  @keyframes floatPlate {
-                    0%, 100% { transform: translateY(0) rotate(0deg); }
-                    50% { transform: translateY(-15px) rotate(5deg); }
-                  }
-                  @keyframes floatFork {
-                    0%, 100% { transform: translateY(0) rotate(0deg); }
-                    50% { transform: translateY(-10px) rotate(-3deg); }
-                  }
-                  @keyframes pulseGlow {
-                    0%, 100% { opacity: 0.3; transform: scale(1); }
-                    50% { opacity: 0.6; transform: scale(1.1); }
-                  }
-                  .plate-anim { animation: floatPlate 3s ease-in-out infinite; transform-origin: center; }
-                  .plate-anim-delay1 { animation-delay: 0.5s; }
-                  .plate-anim-delay2 { animation-delay: 1s; }
-                  .fork-anim { animation: floatFork 2.5s ease-in-out infinite; transform-origin: center; }
-                  .glow-anim { animation: pulseGlow 2s ease-in-out infinite; }
-                </style>
               </defs>
               <!-- Tavolo -->
               <rect x="50" y="180" width="300" height="20" rx="10" fill="url(#restGrad1)"/>
