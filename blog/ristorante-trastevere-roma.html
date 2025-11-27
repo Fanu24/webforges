@@ -763,7 +763,11 @@
       <div class="hero-grid">
         <div>
           <div class="hero-badge glass">
-            <span>🍽️</span>
+            <span style="display: inline-flex; align-items: center; width: 20px; height: 20px; color: var(--neon-cyan);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.1 13.34l2.83-2.83L3.91 3.5c-1.56 1.56-1.56 4.09 0 5.66l4.19 4.18zm6.78-1.81c1.53.71 3.68.21 5.27-1.38 1.91-1.91 2.28-4.65.81-6.12-1.46-1.46-4.2-1.1-6.12.81-1.59 1.59-2.09 3.74-1.38 5.27L3.7 19.87l1.41 1.41L12 14.41l6.88 6.88 1.41-1.41L13.41 13l1.47-1.47z" fill="currentColor"/>
+              </svg>
+            </span>
             <span style="font-size: 0.875rem; color: var(--text-secondary);">Ristoranti • Trastevere, Roma</span>
           </div>
           <h1 class="hero-title">
@@ -782,59 +786,120 @@
           </div>
           <div class="hero-benefits">
             <div class="benefit-item">
-              <span>📈</span>
+              <span style="display: inline-flex; align-items: center; width: 20px; height: 20px; color: var(--neon-cyan);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z" fill="currentColor"/>
+                </svg>
+              </span>
               <span>+300% Prenotazioni</span>
             </div>
             <div class="benefit-item">
-              <span>💰</span>
+              <span style="display: inline-flex; align-items: center; width: 20px; height: 20px; color: var(--neon-purple);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z" fill="currentColor"/>
+                </svg>
+              </span>
               <span>€15K+ Ricavi Extra/Mese</span>
             </div>
             <div class="benefit-item">
-              <span>⭐</span>
+              <span style="display: inline-flex; align-items: center; width: 20px; height: 20px; color: var(--neon-pink);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" fill="currentColor"/>
+                </svg>
+              </span>
               <span>85% Cerca Online Prima</span>
             </div>
           </div>
         </div>
         <div class="hero-mockup hidden-mobile">
-          <div class="mockup-laptop">
-            <div class="mockup-card glass">
-              <div class="mockup-screen">
-                <div class="mockup-circle"></div>
-              </div>
-            </div>
-            <div class="mockup-mobile glass">
-              <div class="mockup-mobile-screen"></div>
-            </div>
+          <div class="hero-illustration" style="max-width: 100%; height: auto;">
+            <svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
+              <defs>
+                <linearGradient id="restGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#22d3ee;stop-opacity:0.3" />
+                  <stop offset="100%" style="stop-color:#a855f7;stop-opacity:0.3" />
+                </linearGradient>
+                <linearGradient id="restGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#ec4899;stop-opacity:0.2" />
+                  <stop offset="100%" style="stop-color:#22d3ee;stop-opacity:0.2" />
+                </linearGradient>
+              </defs>
+              <rect x="50" y="180" width="300" height="20" rx="10" fill="url(#restGrad1)"/>
+              <circle cx="120" cy="150" r="25" fill="url(#restGrad2)"/>
+              <circle cx="200" cy="150" r="25" fill="url(#restGrad2)"/>
+              <circle cx="280" cy="150" r="25" fill="url(#restGrad2)"/>
+              <path d="M200 80 L200 140 M195 90 L205 90" stroke="#22d3ee" stroke-width="3" fill="none"/>
+              <circle cx="80" cy="100" r="15" fill="#a855f7" opacity="0.3"/>
+              <circle cx="320" cy="100" r="15" fill="#ec4899" opacity="0.3"/>
+            </svg>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Stats Section -->
+  <!-- Il Problema Section -->
   <section class="section section-alt">
     <div class="container">
+      <h2 class="section-title">
+        <span>Il Problema: Senza Sito Web</span><br>
+        <span class="text-gradient">Stai Perdendo Migliaia di Clienti</span>
+      </h2>
+      <p class="section-subtitle">
+        Trastevere è uno dei quartieri più turistici di Roma. Ogni giorno, centinaia di persone cercano ristoranti online. 
+        Senza un sito web professionale, il tuo ristorante è invisibile.
+      </p>
+      
       <div class="stats-grid">
         <div class="stat-card glass card-interactive">
-          <div class="stat-icon">📈</div>
-          <div class="stat-value">+300%</div>
-          <div class="stat-label">Prenotazioni Online</div>
-        </div>
-        <div class="stat-card glass card-interactive">
-          <div class="stat-icon">💰</div>
-          <div class="stat-value">€15K+</div>
-          <div class="stat-label">Ricavi Extra al Mese</div>
-        </div>
-        <div class="stat-card glass card-interactive">
-          <div class="stat-icon">👥</div>
+          <div class="stat-icon" style="display: flex; justify-content: center; align-items: center; width: 64px; height: 64px; margin: 0 auto 1rem; color: var(--neon-cyan);">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" fill="currentColor"/>
+            </svg>
+          </div>
           <div class="stat-value">85%</div>
-          <div class="stat-label">Cerca Online Prima</div>
+          <div class="stat-label">Cerca ristoranti online prima di prenotare</div>
+          <div style="font-size: 0.75rem; color: var(--text-disabled); margin-top: 0.5rem;">Fonte: Google, 2023</div>
         </div>
         <div class="stat-card glass card-interactive">
-          <div class="stat-icon">⭐</div>
-          <div class="stat-value">24/7</div>
-          <div class="stat-label">Prenotazioni Sempre Attive</div>
+          <div class="stat-icon" style="display: flex; justify-content: center; align-items: center; width: 64px; height: 64px; margin: 0 auto 1rem; color: var(--neon-purple);">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="stat-value">73%</div>
+          <div class="stat-label">Non prenota se non trova informazioni online</div>
+          <div style="font-size: 0.75rem; color: var(--text-disabled); margin-top: 0.5rem;">Fonte: TripAdvisor, 2023</div>
         </div>
+        <div class="stat-card glass card-interactive">
+          <div class="stat-icon" style="display: flex; justify-content: center; align-items: center; width: 64px; height: 64px; margin: 0 auto 1rem; color: var(--neon-pink);">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="stat-value">60%</div>
+          <div class="stat-label">Sceglie il ristorante in base alle foto del menu</div>
+          <div style="font-size: 0.75rem; color: var(--text-disabled); margin-top: 0.5rem;">Fonte: OpenTable, 2023</div>
+        </div>
+        <div class="stat-card glass card-interactive">
+          <div class="stat-icon" style="display: flex; justify-content: center; align-items: center; width: 64px; height: 64px; margin: 0 auto 1rem; color: var(--neon-cyan);">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="stat-value">€90K+</div>
+          <div class="stat-label">Ricavi persi all'anno senza sito web</div>
+          <div style="font-size: 0.75rem; color: var(--text-disabled); margin-top: 0.5rem;">15-20 prenotazioni/mese perse</div>
+        </div>
+      </div>
+      
+      <div style="max-width: 900px; margin: 3rem auto 0; padding: 2rem; background: rgba(236, 72, 153, 0.1); border-radius: 1rem; border: 1px solid rgba(236, 72, 153, 0.3);">
+        <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: var(--neon-pink);">Costo dell'Inazione</h3>
+        <p style="color: var(--text-secondary); line-height: 1.8; font-size: 1.125rem;">
+          Un ristorante a Trastevere senza sito web perde in media <strong style="color: var(--text-primary);">15-20 prenotazioni al mese</strong>. 
+          Con un conto medio di €50 a persona, significa <strong style="color: var(--neon-cyan);">€7.500-€10.000 di ricavi persi mensilmente</strong>. 
+          In un anno, questo si traduce in <strong style="color: var(--neon-pink);">€90.000-€120.000 di ricavi persi</strong>.
+        </p>
       </div>
     </div>
   </section>
@@ -852,7 +917,11 @@
       
       <div class="cards-grid">
         <div class="card glass card-interactive">
-          <div class="card-icon">🔍</div>
+          <div class="card-icon" style="display: flex; align-items: center; justify-content: center; color: var(--neon-cyan);">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" fill="currentColor"/>
+            </svg>
+          </div>
           <h3 class="card-title">Visibilità su Google</h3>
           <p class="card-description">
             Quando qualcuno cerca "ristorante Trastevere", il tuo locale appare tra i primi risultati. Più clienti, più prenotazioni, più successo.
@@ -860,7 +929,11 @@
         </div>
         
         <div class="card glass card-interactive">
-          <div class="card-icon">📱</div>
+          <div class="card-icon" style="display: flex; align-items: center; justify-content: center; color: var(--neon-purple);">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" fill="currentColor"/>
+            </svg>
+          </div>
           <h3 class="card-title">Menu Online Sempre Aggiornato</h3>
           <p class="card-description">
             Mostra il tuo menu con foto appetitose, prezzi chiari e informazioni su allergeni. I clienti prenotano di più quando vedono cosa offri.
@@ -868,7 +941,11 @@
         </div>
         
         <div class="card glass card-interactive">
-          <div class="card-icon">📅</div>
+          <div class="card-icon" style="display: flex; align-items: center; justify-content: center; color: var(--neon-pink);">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z" fill="currentColor"/>
+            </svg>
+          </div>
           <h3 class="card-title">Prenotazioni 24 Ore su 24</h3>
           <p class="card-description">
             Accetta prenotazioni anche quando il ristorante è chiuso. I turisti che visitano Trastevere possono prenotare in qualsiasi momento.
@@ -876,7 +953,11 @@
         </div>
         
         <div class="card glass card-interactive">
-          <div class="card-icon">📸</div>
+          <div class="card-icon" style="display: flex; align-items: center; justify-content: center; color: var(--neon-cyan);">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" fill="currentColor"/>
+            </svg>
+          </div>
           <h3 class="card-title">Mostra la Tua Cucina</h3>
           <p class="card-description">
             Foto professionali dei piatti, ambiente del ristorante, recensioni positive. Crea fiducia e invoglia i clienti a prenotare.
@@ -884,7 +965,11 @@
         </div>
         
         <div class="card glass card-interactive">
-          <div class="card-icon">📍</div>
+          <div class="card-icon" style="display: flex; align-items: center; justify-content: center; color: var(--neon-purple);">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor"/>
+            </svg>
+          </div>
           <h3 class="card-title">SEO Locale Ottimizzato</h3>
           <p class="card-description">
             Il tuo ristorante appare su Google Maps quando qualcuno cerca nella zona. Essenziale per catturare turisti e romani in giro per Trastevere.
@@ -892,11 +977,82 @@
         </div>
         
         <div class="card glass card-interactive">
-          <div class="card-icon">💬</div>
+          <div class="card-icon" style="display: flex; align-items: center; justify-content: center; color: var(--neon-pink);">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z" fill="currentColor"/>
+            </svg>
+          </div>
           <h3 class="card-title">Comunica Eventi e Offerte</h3>
           <p class="card-description">
             Promuovi serate speciali, menu del giorno, eventi. Aumenta l'affluenza nei giorni più tranquilli e massimizza i ricavi.
           </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Perché Trastevere Section -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">
+        <span>Perché Trastevere è</span><br>
+        <span class="text-gradient">Perfetto per il Tuo Ristorante Online</span>
+      </h2>
+      <p class="section-subtitle">
+        Trastevere è uno dei quartieri più iconici e frequentati di Roma. Con oltre 2 milioni di turisti all'anno, 
+        avere un sito web professionale non è un optional: è essenziale.
+      </p>
+      
+      <div style="display: grid; grid-template-columns: 1fr; gap: 2rem; max-width: 1000px; margin: 0 auto;">
+        <div class="card glass card-interactive" style="display: grid; grid-template-columns: 1fr; gap: 1.5rem; padding: 2.5rem;">
+          <div style="display: flex; align-items: start; gap: 1.5rem;">
+            <div style="flex-shrink: 0; width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(34, 211, 238, 0.2), rgba(168, 85, 247, 0.2)); border-radius: 1rem; color: var(--neon-cyan);">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor"/>
+              </svg>
+            </div>
+            <div>
+              <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--text-primary);">2+ Milioni di Turisti all'Anno</h3>
+              <p style="color: var(--text-secondary); line-height: 1.8;">
+                Trastevere attira milioni di visitatori ogni anno. La maggior parte cerca ristoranti online prima di arrivare. 
+                Senza un sito web, perdi questa enorme opportunità.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card glass card-interactive" style="display: grid; grid-template-columns: 1fr; gap: 1.5rem; padding: 2.5rem;">
+          <div style="display: flex; align-items: start; gap: 1.5rem;">
+            <div style="flex-shrink: 0; width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(236, 72, 153, 0.2)); border-radius: 1rem; color: var(--neon-purple);">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z" fill="currentColor"/>
+              </svg>
+            </div>
+            <div>
+              <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--text-primary);">Alta Competizione</h3>
+              <p style="color: var(--text-secondary); line-height: 1.8;">
+                Trastevere ha centinaia di ristoranti. Per distinguerti, devi essere visibile online. 
+                Un sito web professionale ti fa apparire tra i primi risultati quando qualcuno cerca nella zona.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card glass card-interactive" style="display: grid; grid-template-columns: 1fr; gap: 1.5rem; padding: 2.5rem;">
+          <div style="display: flex; align-items: start; gap: 1.5rem;">
+            <div style="flex-shrink: 0; width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(236, 72, 153, 0.2), rgba(34, 211, 238, 0.2)); border-radius: 1rem; color: var(--neon-pink);">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z" fill="currentColor"/>
+              </svg>
+            </div>
+            <div>
+              <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--text-primary);">Ricerca Mobile Dominante</h3>
+              <p style="color: var(--text-secondary); line-height: 1.8;">
+                Il 85% delle ricerche di ristoranti a Trastevere avviene da smartphone mentre le persone camminano per il quartiere. 
+                Il tuo sito deve essere perfetto su mobile.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -915,7 +1071,11 @@
       
       <div class="cards-grid" style="max-width: 1000px; margin: 0 auto;">
         <div class="card glass card-interactive" style="text-align: center;">
-          <div class="card-icon" style="margin: 0 auto 1rem;">💰</div>
+          <div class="card-icon" style="margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; color: var(--neon-cyan);">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z" fill="currentColor"/>
+            </svg>
+          </div>
           <div style="font-size: 3rem; font-weight: 700; background: linear-gradient(to right, #22d3ee, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem;">+20</div>
           <h3 class="card-title">Prenotazioni Extra/Mese</h3>
           <p class="card-description">
@@ -924,7 +1084,11 @@
         </div>
         
         <div class="card glass card-interactive" style="text-align: center;">
-          <div class="card-icon" style="margin: 0 auto 1rem;">💵</div>
+          <div class="card-icon" style="margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; color: var(--neon-purple);">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z" fill="currentColor"/>
+            </svg>
+          </div>
           <div style="font-size: 3rem; font-weight: 700; background: linear-gradient(to right, #22d3ee, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem;">€50</div>
           <h3 class="card-title">Conto Medio per Persona</h3>
           <p class="card-description">
@@ -933,11 +1097,15 @@
         </div>
         
         <div class="card glass card-interactive" style="text-align: center;">
-          <div class="card-icon" style="margin: 0 auto 1rem;">📊</div>
-          <div style="font-size: 3rem; font-weight: 700; background: linear-gradient(to right, #22d3ee, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem;">€10K</div>
-          <h3 class="card-title">Ricavi Extra al Mese</h3>
+          <div class="card-icon" style="margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; color: var(--neon-pink);">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z" fill="currentColor"/>
+            </svg>
+          </div>
+          <div style="font-size: 3rem; font-weight: 700; background: linear-gradient(to right, #22d3ee, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem;">€12K</div>
+          <h3 class="card-title">Ricavi Extra all'Anno</h3>
           <p class="card-description">
-            20 prenotazioni × €50 = €1.000 × 10 mesi = €10.000 ricavi extra annui.
+            20 prenotazioni × €50 × 12 mesi = €12.000 ricavi extra annui. Investimento recuperato in 3-4 mesi.
           </p>
         </div>
       </div>
@@ -949,6 +1117,89 @@
         <p style="color: var(--text-secondary);">
           Investi €3.000, guadagni €120.000 in ricavi extra. L'investimento migliore per il tuo ristorante.
         </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">
+        <span>Domande Frequenti</span><br>
+        <span class="text-gradient">Tutto Quello che Vuoi Sapere</span>
+      </h2>
+      <p class="section-subtitle">
+        Risposte alle domande più comuni sui siti web per ristoranti a Trastevere.
+      </p>
+      
+      <div style="max-width: 900px; margin: 0 auto; display: grid; gap: 1.5rem;">
+        <div class="card glass card-interactive" style="padding: 2rem;">
+          <div style="display: flex; align-items: start; gap: 1rem; margin-bottom: 1rem;">
+            <div style="flex-shrink: 0; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: var(--neon-cyan);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z" fill="currentColor"/>
+              </svg>
+            </div>
+            <div>
+              <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--text-primary);">Quanto costa un sito web per ristorante?</h3>
+              <p style="color: var(--text-secondary); line-height: 1.8;">
+                Un sito web professionale per ristorante costa tra €2.500 e €4.000. Include design personalizzato, menu online, 
+                sistema prenotazioni, SEO locale ottimizzato e responsive mobile. L'investimento si ripaga in 3-4 mesi con le prenotazioni extra.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card glass card-interactive" style="padding: 2rem;">
+          <div style="display: flex; align-items: start; gap: 1rem; margin-bottom: 1rem;">
+            <div style="flex-shrink: 0; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: var(--neon-purple);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z" fill="currentColor"/>
+              </svg>
+            </div>
+            <div>
+              <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--text-primary);">Quanto tempo ci vuole per realizzare il sito?</h3>
+              <p style="color: var(--text-secondary); line-height: 1.8;">
+                In media, un sito web professionale per ristorante viene completato in 2-3 settimane. Questo include design, 
+                sviluppo, integrazione menu e prenotazioni, ottimizzazione SEO e test. Ti teniamo aggiornato durante tutto il processo.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card glass card-interactive" style="padding: 2rem;">
+          <div style="display: flex; align-items: start; gap: 1rem; margin-bottom: 1rem;">
+            <div style="flex-shrink: 0; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: var(--neon-pink);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z" fill="currentColor"/>
+              </svg>
+            </div>
+            <div>
+              <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--text-primary);">Posso aggiornare il menu da solo?</h3>
+              <p style="color: var(--text-secondary); line-height: 1.8;">
+                Sì! Ti forniamo un pannello di controllo semplice e intuitivo dove puoi aggiornare menu, prezzi, foto e informazioni 
+                in qualsiasi momento, senza bisogno di conoscenze tecniche. Ti mostriamo come usarlo durante la consegna.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card glass card-interactive" style="padding: 2rem;">
+          <div style="display: flex; align-items: start; gap: 1rem; margin-bottom: 1rem;">
+            <div style="flex-shrink: 0; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: var(--neon-cyan);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z" fill="currentColor"/>
+              </svg>
+            </div>
+            <div>
+              <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--text-primary);">Il sito funziona su smartphone?</h3>
+              <p style="color: var(--text-secondary); line-height: 1.8;">
+                Assolutamente sì! Il 85% delle ricerche di ristoranti a Trastevere avviene da smartphone. Il tuo sito sarà 
+                perfettamente ottimizzato per mobile, con menu facile da navigare e prenotazioni con un solo tap.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
