@@ -709,7 +709,18 @@
         }
 
         // Mostra pagine per categoria
-        displayCategories(realStats.articlesByCategory, realStats.totalArticles);
+        console.log('Preparazione per mostrare categorie...');
+        console.log('realStats:', realStats);
+        console.log('articlesByCategory:', realStats.articlesByCategory);
+        if (realStats.articlesByCategory && realStats.articlesByCategory.length > 0) {
+          displayCategories(realStats.articlesByCategory, realStats.totalArticles);
+        } else {
+          console.error('Nessuna categoria trovata!');
+          const categoriesDiv = document.getElementById('categoriesList');
+          if (categoriesDiv) {
+            categoriesDiv.innerHTML = '<div style="color: var(--danger); padding: 1rem;">Nessuna categoria trovata. Controlla la console per errori.</div>';
+          }
+        }
 
         // Update articles table con esempi reali
         const sampleArticles = [
@@ -792,6 +803,7 @@
     // Mostra pagine per categoria
     function displayCategories(categoriesData, totalArticles) {
       try {
+        console.log('displayCategories chiamata con', categoriesData.length, 'categorie');
         const categoriesDiv = document.getElementById('categoriesList');
         if (!categoriesDiv) {
           console.error('Elemento categoriesList non trovato');
@@ -799,25 +811,26 @@
         }
         
         const categoriesHTML = categoriesData.map(cat => {
-        const percentage = ((cat.count / totalArticles) * 100).toFixed(1);
-        return `
-          <div class="category-item" data-category="${cat.slug}" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; margin-bottom: 0.5rem; background: rgba(255,255,255,0.02); border-radius: 0.5rem; border: 1px solid rgba(255,255,255,0.05); cursor: pointer; transition: all 0.3s ease;">
-            <div style="display: flex; align-items: center; gap: 1rem; flex: 1;">
-              <span style="font-size: 1.5rem;">${cat.icon}</span>
-              <div>
-                <div style="font-weight: 600; color: var(--text-primary);">${cat.name}</div>
-                <div style="font-size: 0.75rem; color: var(--text-secondary);">${cat.count} pagine</div>
+          const percentage = ((cat.count / totalArticles) * 100).toFixed(1);
+          return `
+            <div class="category-item" data-category="${cat.slug}" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; margin-bottom: 0.5rem; background: rgba(255,255,255,0.02); border-radius: 0.5rem; border: 1px solid rgba(255,255,255,0.05); cursor: pointer; transition: all 0.3s ease;">
+              <div style="display: flex; align-items: center; gap: 1rem; flex: 1;">
+                <span style="font-size: 1.5rem;">${cat.icon}</span>
+                <div>
+                  <div style="font-weight: 600; color: var(--text-primary);">${cat.name}</div>
+                  <div style="font-size: 0.75rem; color: var(--text-secondary);">${cat.count} pagine</div>
+                </div>
+              </div>
+              <div style="text-align: right;">
+                <div style="font-weight: 600; color: var(--neon-cyan);">${cat.count}</div>
+                <div style="font-size: 0.75rem; color: var(--text-secondary);">${percentage}%</div>
               </div>
             </div>
-            <div style="text-align: right;">
-              <div style="font-weight: 600; color: var(--neon-cyan);">${cat.count}</div>
-              <div style="font-size: 0.75rem; color: var(--text-secondary);">${percentage}%</div>
-            </div>
-          </div>
-        `;
-      }).join('');
+          `;
+        }).join('');
       
-      categoriesDiv.innerHTML = categoriesHTML;
+        console.log('HTML generato, lunghezza:', categoriesHTML.length);
+        categoriesDiv.innerHTML = categoriesHTML;
       
       // Aggiungi click handler per ogni categoria
       document.querySelectorAll('.category-item').forEach(item => {
@@ -836,22 +849,22 @@
         });
       });
       
-        // Search functionality
-        const searchInput = document.getElementById('searchCategory');
-        if (searchInput) {
-          searchInput.addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase();
-            document.querySelectorAll('.category-item').forEach(item => {
-              const categoryName = item.textContent.toLowerCase();
-              item.style.display = categoryName.includes(searchTerm) ? 'flex' : 'none';
-            });
+      // Search functionality
+      const searchInput = document.getElementById('searchCategory');
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          const searchTerm = e.target.value.toLowerCase();
+          document.querySelectorAll('.category-item').forEach(item => {
+            const categoryName = item.textContent.toLowerCase();
+            item.style.display = categoryName.includes(searchTerm) ? 'flex' : 'none';
           });
-        }
+        });
+      }
       } catch (error) {
         console.error('Errore nel displayCategories:', error);
         const categoriesDiv = document.getElementById('categoriesList');
         if (categoriesDiv) {
-          categoriesDiv.innerHTML = '<div style="color: var(--danger); padding: 1rem;">Errore nel caricamento categorie.</div>';
+          categoriesDiv.innerHTML = '<div style="color: var(--danger); padding: 1rem;">Errore nel caricamento categorie: ' + error.message + '</div>';
         }
       }
     }
