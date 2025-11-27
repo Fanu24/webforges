@@ -505,9 +505,19 @@
     const ADMIN_PASSWORD = 'webforge2024'; // Password: webforge2024
     const SESSION_KEY = 'admin_authenticated';
 
-    // Check if already logged in
-    if (sessionStorage.getItem(SESSION_KEY) === 'true') {
-      showDashboard();
+    // Check if already logged in - aspetta che il DOM sia pronto
+    function initDashboard() {
+      if (sessionStorage.getItem(SESSION_KEY) === 'true') {
+        setTimeout(() => {
+          showDashboard();
+        }, 100);
+      }
+    }
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initDashboard);
+    } else {
+      initDashboard();
     }
 
     // Login Form
@@ -560,9 +570,17 @@
     }
 
     function showDashboard() {
-      document.getElementById('loginContainer').style.display = 'none';
-      document.getElementById('dashboardContainer').classList.add('active');
-      loadDashboardData();
+      const loginContainer = document.getElementById('loginContainer');
+      const dashboardContainer = document.getElementById('dashboardContainer');
+      
+      if (loginContainer) loginContainer.style.display = 'none';
+      if (dashboardContainer) {
+        dashboardContainer.classList.add('active');
+        // Aspetta un attimo che il DOM si aggiorni
+        setTimeout(() => {
+          loadDashboardData();
+        }, 50);
+      }
     }
 
     // Categorie e località reali
@@ -633,120 +651,154 @@
 
     // Load Dashboard Data
     function loadDashboardData() {
-      const realStats = calculateRealStats();
-      
-      // Statistiche reali basate sui file
-      const totalArticles = realStats.totalArticles;
-      // Per visite/conversioni, usa dati realistici basati sul numero di articoli
-      const estimatedViews = Math.floor(totalArticles * 50); // Stima: ~50 visite per articolo
-      const estimatedConversions = Math.floor(estimatedViews * 0.025); // 2.5% conversion rate
-      const conversionRate = ((estimatedConversions / estimatedViews) * 100).toFixed(2);
+      try {
+        const realStats = calculateRealStats();
+        
+        // Statistiche reali basate sui file
+        const totalArticles = realStats.totalArticles;
+        // Per visite/conversioni, usa dati realistici basati sul numero di articoli
+        const estimatedViews = Math.floor(totalArticles * 50); // Stima: ~50 visite per articolo
+        const estimatedConversions = Math.floor(estimatedViews * 0.025); // 2.5% conversion rate
+        const conversionRate = ((estimatedConversions / estimatedViews) * 100).toFixed(2);
 
-      // Update stats con dati reali
-      document.getElementById('totalArticles').textContent = totalArticles;
-      document.getElementById('totalViews').textContent = estimatedViews.toLocaleString();
-      document.getElementById('totalConversions').textContent = estimatedConversions;
-      document.getElementById('conversionRate').textContent = conversionRate + '%';
+        // Update stats con dati reali
+        const totalArticlesEl = document.getElementById('totalArticles');
+        const totalViewsEl = document.getElementById('totalViews');
+        const totalConversionsEl = document.getElementById('totalConversions');
+        const conversionRateEl = document.getElementById('conversionRate');
+        
+        if (totalArticlesEl) totalArticlesEl.textContent = totalArticles;
+        if (totalViewsEl) totalViewsEl.textContent = estimatedViews.toLocaleString();
+        if (totalConversionsEl) totalConversionsEl.textContent = estimatedConversions;
+        if (conversionRateEl) conversionRateEl.textContent = conversionRate + '%';
 
-      // Popola filtro categorie
-      const categoryFilter = document.getElementById('filterCategory');
-      categories.forEach(cat => {
-        const option = document.createElement('option');
-        option.value = cat.slug;
-        option.textContent = cat.name;
-        categoryFilter.appendChild(option);
-      });
-      
-      // Popola select per visualizzazione blog
-      const selectCategoryView = document.getElementById('selectCategoryView');
-      categories.forEach(cat => {
-        const option = document.createElement('option');
-        option.value = cat.slug;
-        option.textContent = `${cat.icon} ${cat.name}`;
-        selectCategoryView.appendChild(option);
-      });
-      
-      // Handler per select categoria
-      selectCategoryView.addEventListener('change', (e) => {
-        if (e.target.value) {
-          displayBlogsForCategory(e.target.value, realStats.articlesByCategory);
-        } else {
-          document.getElementById('blogListContainer').innerHTML = '<div class="loading">Seleziona una categoria per vedere l\'elenco dei blog</div>';
+        // Popola filtro categorie
+        const categoryFilter = document.getElementById('filterCategory');
+        if (categoryFilter) {
+          categoryFilter.innerHTML = '<option value="">Tutte le categorie</option>';
+          categories.forEach(cat => {
+            const option = document.createElement('option');
+            option.value = cat.slug;
+            option.textContent = cat.name;
+            categoryFilter.appendChild(option);
+          });
         }
-      });
+        
+        // Popola select per visualizzazione blog
+        const selectCategoryView = document.getElementById('selectCategoryView');
+        if (selectCategoryView) {
+          selectCategoryView.innerHTML = '<option value="">Seleziona una categoria per vedere i blog</option>';
+          categories.forEach(cat => {
+            const option = document.createElement('option');
+            option.value = cat.slug;
+            option.textContent = `${cat.icon} ${cat.name}`;
+            selectCategoryView.appendChild(option);
+          });
+          
+          // Handler per select categoria
+          selectCategoryView.addEventListener('change', (e) => {
+            if (e.target.value) {
+              displayBlogsForCategory(e.target.value, realStats.articlesByCategory);
+            } else {
+              const blogContainer = document.getElementById('blogListContainer');
+              if (blogContainer) {
+                blogContainer.innerHTML = '<div class="loading">Seleziona una categoria per vedere l\'elenco dei blog</div>';
+              }
+            }
+          });
+        }
 
-      // Mostra pagine per categoria
-      displayCategories(realStats.articlesByCategory, realStats.totalArticles);
+        // Mostra pagine per categoria
+        displayCategories(realStats.articlesByCategory, realStats.totalArticles);
 
-      // Update articles table con esempi reali
-      const sampleArticles = [
-        { category: 'Ristoranti', location: 'Trastevere, Roma', views: 1245, conversions: 34, rate: 2.73 },
-        { category: 'Hotel', location: 'Navigli, Milano', views: 892, conversions: 28, rate: 3.14 },
-        { category: 'Agenzie Immobiliari', location: 'Centro, Milano', views: 756, conversions: 19, rate: 2.51 },
-        { category: 'Dentisti', location: 'Prati, Roma', views: 634, conversions: 15, rate: 2.37 },
-        { category: 'Meccanici', location: 'Eur, Roma', views: 523, conversions: 12, rate: 2.29 }
-      ];
-      
-      const tbody = document.getElementById('articlesTableBody');
-      tbody.innerHTML = sampleArticles.map(article => `
-        <tr>
-          <td>Sito Web per ${article.category}</td>
-          <td>${article.category}</td>
-          <td>${article.location}</td>
-          <td>${article.views.toLocaleString()}</td>
-          <td>${article.conversions}</td>
-          <td>${article.rate}%</td>
-          <td>
-            <span class="badge badge-${article.rate > 2.5 ? 'success' : 'warning'}">
-              ${article.rate > 2.5 ? 'Ottimo' : 'Buono'}
-            </span>
-          </td>
-        </tr>
-      `).join('');
+        // Update articles table con esempi reali
+        const sampleArticles = [
+          { category: 'Ristoranti', location: 'Trastevere, Roma', views: 1245, conversions: 34, rate: 2.73 },
+          { category: 'Hotel', location: 'Navigli, Milano', views: 892, conversions: 28, rate: 3.14 },
+          { category: 'Agenzie Immobiliari', location: 'Centro, Milano', views: 756, conversions: 19, rate: 2.51 },
+          { category: 'Dentisti', location: 'Prati, Roma', views: 634, conversions: 15, rate: 2.37 },
+          { category: 'Meccanici', location: 'Eur, Roma', views: 523, conversions: 12, rate: 2.29 }
+        ];
+        
+        const tbody = document.getElementById('articlesTableBody');
+        if (tbody) {
+          tbody.innerHTML = sampleArticles.map(article => `
+            <tr>
+              <td>Sito Web per ${article.category}</td>
+              <td>${article.category}</td>
+              <td>${article.location}</td>
+              <td>${article.views.toLocaleString()}</td>
+              <td>${article.conversions}</td>
+              <td>${article.rate}%</td>
+              <td>
+                <span class="badge badge-${article.rate > 2.5 ? 'success' : 'warning'}">
+                  ${article.rate > 2.5 ? 'Ottimo' : 'Buono'}
+                </span>
+              </td>
+            </tr>
+          `).join('');
+        }
 
-      // Update keywords con dati realistici
-      const topKeywords = [
-        { keyword: 'sito web ristorante Roma', impressions: 3420, clicks: 145 },
-        { keyword: 'sito web hotel Milano', impressions: 2890, clicks: 128 },
-        { keyword: 'sito web agenzia immobiliare', impressions: 2156, clicks: 89 },
-        { keyword: 'sito web dentista Roma', impressions: 1890, clicks: 67 },
-        { keyword: 'sito web meccanico Milano', impressions: 1654, clicks: 54 }
-      ];
-      
-      const keywordsDiv = document.getElementById('topKeywords');
-      keywordsDiv.innerHTML = topKeywords.map((kw, index) => `
-        <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
-          <div>
-            <div style="font-weight: 600; color: var(--text-primary);">${index + 1}. ${kw.keyword}</div>
-            <div style="font-size: 0.75rem; color: var(--text-secondary);">${kw.impressions.toLocaleString()} impressioni</div>
-          </div>
-          <div style="text-align: right;">
-            <div style="font-weight: 600; color: var(--neon-cyan);">${kw.clicks} click</div>
-            <div style="font-size: 0.75rem; color: var(--text-secondary);">${(kw.clicks/kw.impressions*100).toFixed(2)}% CTR</div>
-          </div>
-        </div>
-      `).join('');
-
-      // Simple chart (in produzione usare Chart.js)
-      const chartDiv = document.getElementById('visitsChart');
-      const monthlyData = [65, 72, 58, 81, 75, 88, 92, 85, 78, 95, 102, 98];
-      chartDiv.innerHTML = `
-        <div style="height: 100%; display: flex; align-items: flex-end; gap: 0.5rem; padding: 1rem;">
-          ${monthlyData.map((height, i) => `
-            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
-              <div style="background: linear-gradient(to top, #06b6d4, #9333ea); width: 100%; height: ${height}%; border-radius: 0.25rem 0.25rem 0 0;"></div>
-              <div style="font-size: 0.75rem; color: var(--text-secondary);">${i + 1}</div>
+        // Update keywords con dati realistici
+        const topKeywords = [
+          { keyword: 'sito web ristorante Roma', impressions: 3420, clicks: 145 },
+          { keyword: 'sito web hotel Milano', impressions: 2890, clicks: 128 },
+          { keyword: 'sito web agenzia immobiliare', impressions: 2156, clicks: 89 },
+          { keyword: 'sito web dentista Roma', impressions: 1890, clicks: 67 },
+          { keyword: 'sito web meccanico Milano', impressions: 1654, clicks: 54 }
+        ];
+        
+        const keywordsDiv = document.getElementById('topKeywords');
+        if (keywordsDiv) {
+          keywordsDiv.innerHTML = topKeywords.map((kw, index) => `
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+              <div>
+                <div style="font-weight: 600; color: var(--text-primary);">${index + 1}. ${kw.keyword}</div>
+                <div style="font-size: 0.75rem; color: var(--text-secondary);">${kw.impressions.toLocaleString()} impressioni</div>
+              </div>
+              <div style="text-align: right;">
+                <div style="font-weight: 600; color: var(--neon-cyan);">${kw.clicks} click</div>
+                <div style="font-size: 0.75rem; color: var(--text-secondary);">${(kw.clicks/kw.impressions*100).toFixed(2)}% CTR</div>
+              </div>
             </div>
-          `).join('')}
-        </div>
-      `;
+          `).join('');
+        }
+
+        // Simple chart (in produzione usare Chart.js)
+        const chartDiv = document.getElementById('visitsChart');
+        if (chartDiv) {
+          const monthlyData = [65, 72, 58, 81, 75, 88, 92, 85, 78, 95, 102, 98];
+          chartDiv.innerHTML = `
+            <div style="height: 100%; display: flex; align-items: flex-end; gap: 0.5rem; padding: 1rem;">
+              ${monthlyData.map((height, i) => `
+                <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+                  <div style="background: linear-gradient(to top, #06b6d4, #9333ea); width: 100%; height: ${height}%; border-radius: 0.25rem 0.25rem 0 0;"></div>
+                  <div style="font-size: 0.75rem; color: var(--text-secondary);">${i + 1}</div>
+                </div>
+              `).join('')}
+            </div>
+          `;
+        }
+      } catch (error) {
+        console.error('Errore nel caricamento dashboard:', error);
+        // Mostra messaggio di errore
+        const categoriesDiv = document.getElementById('categoriesList');
+        if (categoriesDiv) {
+          categoriesDiv.innerHTML = '<div style="color: var(--danger); padding: 1rem;">Errore nel caricamento dati. Ricarica la pagina.</div>';
+        }
+      }
     }
 
     // Mostra pagine per categoria
     function displayCategories(categoriesData, totalArticles) {
-      const categoriesDiv = document.getElementById('categoriesList');
-      
-      const categoriesHTML = categoriesData.map(cat => {
+      try {
+        const categoriesDiv = document.getElementById('categoriesList');
+        if (!categoriesDiv) {
+          console.error('Elemento categoriesList non trovato');
+          return;
+        }
+        
+        const categoriesHTML = categoriesData.map(cat => {
         const percentage = ((cat.count / totalArticles) * 100).toFixed(1);
         return `
           <div class="category-item" data-category="${cat.slug}" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; margin-bottom: 0.5rem; background: rgba(255,255,255,0.02); border-radius: 0.5rem; border: 1px solid rgba(255,255,255,0.05); cursor: pointer; transition: all 0.3s ease;">
@@ -784,16 +836,23 @@
         });
       });
       
-      // Search functionality
-      const searchInput = document.getElementById('searchCategory');
-      if (searchInput) {
-        searchInput.addEventListener('input', (e) => {
-          const searchTerm = e.target.value.toLowerCase();
-          document.querySelectorAll('.category-item').forEach(item => {
-            const categoryName = item.textContent.toLowerCase();
-            item.style.display = categoryName.includes(searchTerm) ? 'flex' : 'none';
+        // Search functionality
+        const searchInput = document.getElementById('searchCategory');
+        if (searchInput) {
+          searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            document.querySelectorAll('.category-item').forEach(item => {
+              const categoryName = item.textContent.toLowerCase();
+              item.style.display = categoryName.includes(searchTerm) ? 'flex' : 'none';
+            });
           });
-        });
+        }
+      } catch (error) {
+        console.error('Errore nel displayCategories:', error);
+        const categoriesDiv = document.getElementById('categoriesList');
+        if (categoriesDiv) {
+          categoriesDiv.innerHTML = '<div style="color: var(--danger); padding: 1rem;">Errore nel caricamento categorie.</div>';
+        }
       }
     }
     
