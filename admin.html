@@ -128,10 +128,25 @@
       border-radius: 0.5rem;
       margin-bottom: 1rem;
       font-size: 0.875rem;
-      display: none;
+      display: none !important;
     }
 
     .error-message.show {
+      display: block !important;
+    }
+    
+    .success-message {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid var(--success);
+      color: var(--success);
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+      font-size: 0.875rem;
+      display: none;
+    }
+    
+    .success-message.show {
       display: block;
     }
 
@@ -340,6 +355,10 @@
         Password non corretta. Riprova.
       </div>
       
+      <div class="success-message" id="successMessage">
+        Accesso in corso...
+      </div>
+      
       <form id="loginForm">
         <div class="form-group">
           <label class="form-label" for="password">Password</label>
@@ -462,26 +481,42 @@
     }
 
     // Login Form
-    document.getElementById('loginForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const password = document.getElementById('password').value.trim();
-      const errorMsg = document.getElementById('errorMessage');
-      
-      // Debug (rimuovere in produzione)
-      console.log('Password inserita:', password);
-      console.log('Password attesa:', ADMIN_PASSWORD);
-      
-      if (password === ADMIN_PASSWORD) {
-        sessionStorage.setItem(SESSION_KEY, 'true');
-        showDashboard();
-      } else {
-        errorMsg.classList.add('show');
-        errorMsg.textContent = 'Password non corretta. La password è: ' + ADMIN_PASSWORD;
-        setTimeout(() => {
-          errorMsg.classList.remove('show');
-        }, 5000);
-      }
-    });
+    const loginForm = document.getElementById('loginForm');
+    const passwordInput = document.getElementById('password');
+    const errorMsg = document.getElementById('errorMessage');
+    
+    if (loginForm) {
+      loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const password = passwordInput.value.trim();
+        
+        console.log('Password inserita:', '"' + password + '"');
+        console.log('Password attesa:', '"' + ADMIN_PASSWORD + '"');
+        console.log('Match:', password === ADMIN_PASSWORD);
+        
+        // Confronto case-sensitive
+        if (password === ADMIN_PASSWORD) {
+          const successMsg = document.getElementById('successMessage');
+          if (successMsg) {
+            successMsg.classList.add('show');
+          }
+          sessionStorage.setItem(SESSION_KEY, 'true');
+          setTimeout(() => {
+            showDashboard();
+          }, 500);
+        } else {
+          if (errorMsg) {
+            errorMsg.classList.add('show');
+            errorMsg.innerHTML = 'Password non corretta.<br><strong>Password corretta: ' + ADMIN_PASSWORD + '</strong>';
+            setTimeout(() => {
+              errorMsg.classList.remove('show');
+            }, 8000);
+          }
+          passwordInput.value = '';
+          passwordInput.focus();
+        }
+      });
+    }
 
     // Logout
     document.getElementById('logoutBtn').addEventListener('click', () => {
