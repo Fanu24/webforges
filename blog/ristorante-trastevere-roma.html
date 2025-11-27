@@ -738,15 +738,15 @@
   <nav class="navbar" id="navbar">
     <div class="container">
       <div class="navbar-content">
-        <a href="../index.html" class="logo">
+        <a href="../" class="logo">
           <span style="color: var(--neon-cyan);">⚡</span>
           <span class="text-gradient">WebForge Studio</span>
         </a>
         <div class="nav-links">
-          <a href="../index.html" class="nav-link">Home</a>
-          <a href="../index.html#servizi" class="nav-link">Servizi</a>
-          <a href="../index.html#contatti" class="nav-link">Contatti</a>
-          <a href="../index.html#contatti" class="btn-primary">Richiedi preventivo</a>
+          <a href="../" class="nav-link">Home</a>
+          <a href="../#servizi" class="nav-link">Servizi</a>
+          <a href="../#contatti" class="nav-link">Contatti</a>
+          <a href="../#contatti" class="btn-primary">Richiedi preventivo</a>
         </div>
       </div>
     </div>
@@ -779,10 +779,10 @@
             Menu online, prenotazioni 24/7, SEO locale ottimizzato per Trastevere.
           </p>
           <div class="hero-cta">
-            <a href="../index.html#contatti?categoria=ristoranti&localita=trastevere-roma" class="btn-primary" style="padding: 1rem 2rem;">
+            <a href="../#contatti?categoria=ristoranti&localita=trastevere-roma" class="btn-primary" style="padding: 1rem 2rem;">
               Richiedi Preventivo Gratuito →
             </a>
-            <a href="../index.html#servizi" class="btn-secondary">Scopri i Servizi</a>
+            <a href="../#servizi" class="btn-secondary">Scopri i Servizi</a>
           </div>
           <div class="hero-benefits">
             <div class="benefit-item">
@@ -823,14 +823,50 @@
                   <stop offset="0%" style="stop-color:#ec4899;stop-opacity:0.2" />
                   <stop offset="100%" style="stop-color:#22d3ee;stop-opacity:0.2" />
                 </linearGradient>
+                <style>
+                  @keyframes floatPlate {
+                    0%, 100% { transform: translateY(0) rotate(0deg); }
+                    50% { transform: translateY(-15px) rotate(5deg); }
+                  }
+                  @keyframes floatFork {
+                    0%, 100% { transform: translateY(0) rotate(0deg); }
+                    50% { transform: translateY(-10px) rotate(-3deg); }
+                  }
+                  @keyframes pulseGlow {
+                    0%, 100% { opacity: 0.3; transform: scale(1); }
+                    50% { opacity: 0.6; transform: scale(1.1); }
+                  }
+                  .plate-anim { animation: floatPlate 3s ease-in-out infinite; transform-origin: center; }
+                  .plate-anim-delay1 { animation-delay: 0.5s; }
+                  .plate-anim-delay2 { animation-delay: 1s; }
+                  .fork-anim { animation: floatFork 2.5s ease-in-out infinite; transform-origin: center; }
+                  .glow-anim { animation: pulseGlow 2s ease-in-out infinite; }
+                </style>
               </defs>
+              <!-- Tavolo -->
               <rect x="50" y="180" width="300" height="20" rx="10" fill="url(#restGrad1)"/>
-              <circle cx="120" cy="150" r="25" fill="url(#restGrad2)"/>
-              <circle cx="200" cy="150" r="25" fill="url(#restGrad2)"/>
-              <circle cx="280" cy="150" r="25" fill="url(#restGrad2)"/>
-              <path d="M200 80 L200 140 M195 90 L205 90" stroke="#22d3ee" stroke-width="3" fill="none"/>
-              <circle cx="80" cy="100" r="15" fill="#a855f7" opacity="0.3"/>
-              <circle cx="320" cy="100" r="15" fill="#ec4899" opacity="0.3"/>
+              <!-- Piatti animati -->
+              <g class="plate-anim">
+                <circle cx="120" cy="150" r="25" fill="url(#restGrad2)"/>
+                <circle cx="120" cy="150" r="20" fill="rgba(34, 211, 238, 0.1)"/>
+              </g>
+              <g class="plate-anim plate-anim-delay1">
+                <circle cx="200" cy="150" r="25" fill="url(#restGrad2)"/>
+                <circle cx="200" cy="150" r="20" fill="rgba(168, 85, 247, 0.1)"/>
+              </g>
+              <g class="plate-anim plate-anim-delay2">
+                <circle cx="280" cy="150" r="25" fill="url(#restGrad2)"/>
+                <circle cx="280" cy="150" r="20" fill="rgba(236, 72, 153, 0.1)"/>
+              </g>
+              <!-- Forchetta animata -->
+              <g class="fork-anim">
+                <path d="M200 80 L200 140" stroke="#22d3ee" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <path d="M195 90 L205 90" stroke="#22d3ee" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <path d="M195 100 L205 100" stroke="#22d3ee" stroke-width="2" fill="none" stroke-linecap="round"/>
+              </g>
+              <!-- Decorazioni pulsanti -->
+              <circle cx="80" cy="100" r="15" fill="#a855f7" opacity="0.3" class="glow-anim"/>
+              <circle cx="320" cy="100" r="15" fill="#ec4899" opacity="0.3" class="glow-anim" style="animation-delay: 1s;"/>
             </svg>
           </div>
         </div>
@@ -1216,7 +1252,7 @@
           Contattaci oggi per una consulenza gratuita. Analizzeremo le tue esigenze e ti proporremo 
           la soluzione perfetta per far crescere il tuo ristorante a Trastevere.
         </p>
-        <a href="../index.html#contatti?categoria=ristoranti&localita=trastevere-roma" class="btn-primary" style="padding: 1.25rem 3rem; font-size: 1.125rem;">
+        <a href="../#contatti?categoria=ristoranti&localita=trastevere-roma" class="btn-primary" style="padding: 1.25rem 3rem; font-size: 1.125rem;">
           Richiedi Preventivo Gratuito →
         </a>
       </div>
@@ -1229,9 +1265,9 @@
       <div class="footer-bottom">
         <p>WebForge Studio © 2024 - Siti Web per Ristoranti a Roma e Milano</p>
         <p style="margin-top: 0.5rem;">
-          <a href="../index.html" style="color: var(--neon-cyan); text-decoration: none;">Home</a> | 
-          <a href="../index.html#servizi" style="color: var(--neon-cyan); text-decoration: none;">Servizi</a> | 
-          <a href="../index.html#contatti" style="color: var(--neon-cyan); text-decoration: none;">Contatti</a>
+          <a href="../" style="color: var(--neon-cyan); text-decoration: none;">Home</a> | 
+          <a href="../#servizi" style="color: var(--neon-cyan); text-decoration: none;">Servizi</a> | 
+          <a href="../#contatti" style="color: var(--neon-cyan); text-decoration: none;">Contatti</a>
         </p>
       </div>
     </div>
