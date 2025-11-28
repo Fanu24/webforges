@@ -675,6 +675,24 @@
       overflow: hidden;
     }
 
+    .portfolio-card-preview {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: #020617;
+      overflow: hidden;
+      border-bottom-left-radius: 1rem;
+      border-bottom-right-radius: 1rem;
+    }
+
+    .portfolio-card-preview iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      pointer-events: none;
+      transform-origin: top;
+    }
+
     .portfolio-card-overlay {
       position: absolute;
       inset: 0;
@@ -682,9 +700,10 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      background: linear-gradient(to top, rgba(15, 23, 42, 0.95), transparent);
+      background: linear-gradient(180deg, rgba(5, 7, 20, 0.05), rgba(5, 7, 20, 0.9));
       opacity: 0;
       transition: opacity 0.3s ease;
+      pointer-events: none;
     }
 
     .portfolio-card:hover .portfolio-card-overlay {
@@ -1405,10 +1424,12 @@
         </div>
         <a href="portfolio-demo/ristorante-aurora-static/index.html" target="_blank" rel="noopener" class="card glass card-interactive portfolio-card" style="padding: 0; text-decoration: none;">
           <div style="aspect-ratio: 16/9; position: relative;">
-            <img src="portfolio-demo/ristorante-aurora-static/preview.svg" alt="Anteprima del sito demo Ristorante Aurora" style="width: 100%; height: 100%; object-fit: cover;">
-            <div class="portfolio-card-overlay" style="opacity: 1; background: rgba(5,7,20,0.92); top: auto; bottom: 0; height: auto;">
-              <h3 style="font-size: 1.25rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem;">Ristorante Aurora</h3>
-              <p style="font-size: 0.875rem; color: var(--text-secondary);">Sito elegante con prenotazioni online, menu interattivo e gallery.</p>
+            <div class="portfolio-card-preview">
+              <iframe src="portfolio-demo/ristorante-aurora-static/index.html" loading="lazy" title="Anteprima template ristorante" style="transform: scale(0.5); width: 200%; height: 200%; transform-origin: top left;"></iframe>
+            </div>
+            <div class="portfolio-card-overlay">
+              <h3 style="font-size: 1.25rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem;">Template ristorante demo</h3>
+              <p style="font-size: 0.875rem; color: var(--text-secondary);">Anteprima live del sito demo (non legato a un ristorante reale).</p>
               <span class="portfolio-link">Apri la demo →</span>
             </div>
           </div>
