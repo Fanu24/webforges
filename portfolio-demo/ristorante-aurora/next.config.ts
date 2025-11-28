@@ -1,11 +1,8 @@
 import type { NextConfig } from "next";
 
-const basePath = "/portfolio-demo/ristorante-aurora-site";
-
 const nextConfig: NextConfig = {
   output: "export",
-  basePath,
-  assetPrefix: basePath,
+  assetPrefix: "./",
   images: {
     unoptimized: true,
     remotePatterns: [
