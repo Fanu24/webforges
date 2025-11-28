@@ -1,14 +1,15 @@
 'use client';
 
-import { motion } from "framer-motion";
-import { HTMLAttributes, PropsWithChildren } from "react";
+import { motion, type HTMLMotionProps } from "framer-motion";
+import { PropsWithChildren } from "react";
 import clsx from "clsx";
 
-type AnimatedSectionProps = PropsWithChildren<{
-  className?: string;
-  delay?: number;
-}> &
-  HTMLAttributes<HTMLElement>;
+type AnimatedSectionProps = PropsWithChildren<
+  HTMLMotionProps<"section"> & {
+    className?: string;
+    delay?: number;
+  }
+>;
 
 export function AnimatedSection({
   children,
