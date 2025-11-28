@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from "framer-motion";
 import Image from "next/image";
 
 export function Hero() {
@@ -10,12 +9,7 @@ export function Hero() {
       className="section-padding relative overflow-hidden bg-[#f7efe7]"
     >
       <div className="container grid gap-10 lg:grid-cols-2 lg:items-center">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="flex flex-col gap-6"
-        >
+        <div className="flex flex-col gap-6">
           <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-1 text-sm font-semibold text-[#84624a] shadow-sm">
             ✨ Nuovo menù stagionale · Estate 2025
           </span>
@@ -46,13 +40,8 @@ export function Hero() {
               <p className="text-sm text-[#8c7765]">Dal</p>
             </div>
           </div>
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
-          className="relative"
-        >
+        </div>
+        <div className="relative">
           <div className="relative overflow-hidden rounded-[2rem] border border-[#ecdcd0] bg-white shadow-2xl">
             <Image
               src="https://images.unsplash.com/photo-1505935428862-770b6f24f629?auto=format&fit=crop&w=1200&q=80"
@@ -71,7 +60,7 @@ export function Hero() {
               Menu degustazione vegetale e pairing vini naturali.
             </p>
           </div>
-        </motion.div>
+        </div>
       </div>
       <div className="pointer-events-none absolute inset-0 opacity-60">
         <div className="absolute -left-10 top-10 h-32 w-32 rounded-full bg-[#d8c5b8] blur-3xl" />
